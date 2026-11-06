@@ -56,12 +56,17 @@ if (qIn && qOut) {
   const today = iso(new Date());
   qIn.min = today;
   qIn.value = addDays(today, 7);
-  qOut.min = addDays(qIn.value, 1);
   qOut.value = addDays(qIn.value, 4);
-  qIn.addEventListener("change", () => {
+  // The booking engine accepts at most 60 nights per booking (PMS lib/public-rate.ts).
+  const MAX_NIGHTS = 60;
+  const limits = () => {
     qOut.min = addDays(qIn.value, 1);
-    if (!qOut.value || qOut.value <= qIn.value) qOut.value = addDays(qIn.value, 3);
-  });
+    qOut.max = addDays(qIn.value, MAX_NIGHTS);
+    if (!qOut.value || qOut.value <= qIn.value || qOut.value > qOut.max) qOut.value = addDays(qIn.value, 3);
+  };
+  limits();
+  qIn.addEventListener("change", limits);
+  qOut.addEventListener("change", () => { if (qOut.value > qOut.max || qOut.value <= qIn.value) limits(); });
 }
 
 /* Sticky "Book" bar on phones: hidden while another booking button is on screen. */
