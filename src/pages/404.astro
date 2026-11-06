@@ -1,0 +1,17 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Sun from "../components/Sun.astro";
+import { t, homePath } from "../i18n";
+const el = t("el"), en = t("en");
+---
+<Base lang="el" title={`${el.notFound.title} · Hotel Corali`} noindex>
+  <Header lang="el" />
+  <main id="main" class="notfound container">
+    <Sun class="nf-sun" />
+    <h1 class="h2">{el.notFound.title}</h1>
+    <p>{el.notFound.text}</p>
+    <p lang="en">{en.notFound.title}. {en.notFound.text}</p>
+    <p class="nf-links"><a class="btn btn-coral" href={homePath("el")}>{el.notFound.home}</a> <a class="btn btn-ghost" href={homePath("en")} hreflang="en">{en.notFound.home}</a></p>
+  </main>
+</Base>

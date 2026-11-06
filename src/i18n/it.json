@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Hotel Corali Paros | Hotel sul mare a Piso Livadi",
+    "description": "Hotel Corali a Piso Livadi, Paros: camere e appartamenti con balcone sopra il porticciolo, a 200 m dalla spiaggia e 300 m da Logaras. Prenota direttamente al miglior prezzo."
+  },
+  "a11y": { "skip": "Vai al contenuto", "home": "Hotel Corali — home" },
+  "nav": { "rooms": "Camere", "beaches": "Spiagge", "village": "Piso Livadi", "contact": "Contatti", "book": "Prenota", "menu": "Menu", "close": "Chiudi", "language": "Lingua" },
+  "hero": {
+    "eyebrow": "Piso Livadi · Paros · Cicladi",
+    "titleTop": "Il vostro balcone",
+    "titleBottom": "sull'Egeo",
+    "lead": "Un hotel a conduzione familiare sopra il porticciolo di Piso Livadi. Svegliatevi davanti alle barche dei pescatori, scendete al mare a piedi.",
+    "cta": "Verifica disponibilità",
+    "secondary": "Le camere",
+    "scroll": "Scorri",
+    "photoAlt": "Vista da un balcone dell'Hotel Corali sul porto di Piso Livadi verso Naxos"
+  },
+  "booking": { "title": "Prenotazione diretta", "checkIn": "Arrivo", "checkOut": "Partenza", "submit": "Cerca", "perk": "Miglior prezzo prenotando direttamente" },
+  "marquee": ["Piso Livadi", "Logaras 300 m", "Tramonti sul porto", "Paros", "Vista su Naxos", "Taverne di pesce", "Estate nelle Cicladi"],
+  "intro": {
+    "kicker": "Corali",
+    "title": "Bianco, blu e il suono del porto.",
+    "body": "Sulla costa est di Paros, la più tranquilla, il Corali guarda il porticciolo di Piso Livadi con Naxos di fronte. Archi cicladici, luce ovunque e padroni di casa che conoscono ogni angolo dell'isola.",
+    "stats": [
+      { "value": 200, "suffix": " m", "label": "dalla spiaggia del paese" },
+      { "value": 300, "suffix": " m", "label": "dalla spiaggia sabbiosa di Logaras" },
+      { "value": 15, "suffix": "+", "label": "spiagge entro 30 minuti" }
+    ]
+  },
+  "rooms": {
+    "kicker": "Soggiorno",
+    "title": "Camere piene di luce e di mare",
+    "lead": "Semplici, pulitissime, cicladiche. Una camera per due o un appartamento per famiglia e amici.",
+    "items": [
+      { "name": "Camere doppie", "text": "Parete in pietra, luce calda e una portafinestra che si apre al sole del mattino.", "tags": ["Balcone", "Per 2 ospiti", "Ambiente tranquillo"], "alt": "Camera doppia dell'Hotel Corali con parete in pietra e portafinestra" },
+      { "name": "Appartamenti", "text": "Soggiorno con camino cicladico, zona pranzo e balcone — spazio per tutta la famiglia.", "tags": ["Soggiorno & cucina", "Famiglie", "Aria condizionata"], "alt": "Soggiorno bianco di un appartamento con camino cicladico e tavolo da pranzo" },
+      { "name": "La vista", "text": "Caffè al mattino o vino fresco al tramonto, con il porto e Naxos davanti a voi.", "tags": ["Vista porto", "Vista Naxos", "Soleggiato"], "alt": "Tavolino con frutta e vino su un balcone con vista sul porto" }
+    ],
+    "cta": "Prezzi & disponibilità"
+  },
+  "beaches": {
+    "kicker": "Guida al meltemi",
+    "title": "Dove fare il bagno oggi?",
+    "lead": "A Paros decide il vento. Guardate il vento adesso a Piso Livadi e quali spiagge sono riparate — oppure scegliete voi una direzione.",
+    "live": "Adesso a Piso Livadi",
+    "wind": "Vento",
+    "beaufort": "Beaufort",
+    "sea": "Mare",
+    "air": "Aria",
+    "pick": "Da dove soffia il vento?",
+    "sheltered": "Riparate con questo vento",
+    "exposed": "Vento o onde",
+    "minutes": "min",
+    "km": "km",
+    "loading": "Caricamento meteo…",
+    "error": "Meteo non disponibile — scegliete una direzione del vento.",
+    "source": "Meteo: Open-Meteo. Distanze in auto dall'hotel.",
+    "calm": "Calma piatta — oggi ogni spiaggia è splendida!"
+  },
+  "winds": { "N": "Tramontana", "NE": "Grecale", "E": "Levante", "SE": "Scirocco", "S": "Ostro", "SW": "Libeccio", "W": "Ponente", "NW": "Maestrale" },
+  "village": {
+    "kicker": "Il paese",
+    "title": "Piso Livadi, il volto autentico di Paros",
+    "body": "Un villaggio di pescatori con marina, taverne sull'acqua e caffè che aprono presto. Lontano dalla confusione, vicino a tutto.",
+    "items": [
+      { "title": "Logaras", "text": "Spiaggia di sabbia con acqua bassa, ideale per i bambini — 300 metri." },
+      { "title": "Lefkes & Marpissa", "text": "Paesi tradizionali in collina per una passeggiata pomeridiana." },
+      { "title": "Naoussa", "text": "Il porto cosmopolita dell'isola, a circa 14 km." },
+      { "title": "Parikia", "text": "Il porto principale e la chiesa dell'Ekatontapyliani, a circa 16 km." }
+    ]
+  },
+  "cta": { "title": "La vostra estate comincia qui.", "text": "Prenotate direttamente con il Corali per la migliore tariffa disponibile e un contatto diretto con noi.", "button": "Prenota ora" },
+  "contact": { "title": "Contatti", "address": "Indirizzo", "email": "Email", "phone": "Telefono", "directions": "Indicazioni sulla mappa" },
+  "footer": { "rights": "Tutti i diritti riservati.", "auto": "Questa pagina è stata tradotta automaticamente." },
+  "suggest": { "text": "Questa pagina è disponibile in italiano.", "go": "Cambia", "dismiss": "No, grazie" },
+  "notFound": { "title": "Pagina non trovata", "text": "Sarà andata a fare il bagno. Tornate alla home.", "home": "Home" }
+}

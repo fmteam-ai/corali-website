@@ -1,0 +1,81 @@
+---
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/noto-serif-display/wght.css";
+import "@fontsource-variable/noto-serif-display/wght-italic.css";
+import "../styles/global.css";
+import { getImage } from "astro:assets";
+import { locales, localeOf, homePath, t, type Lang } from "../i18n";
+import { hotel } from "../data/hotel";
+import heroImg from "../assets/corali-harbour.jpg";
+import roomImg from "../assets/corali-room.jpg";
+import aptImg from "../assets/corali-apartment.jpg";
+
+interface Props { lang: Lang; title?: string; description?: string; path?: (code: Lang) => string; noindex?: boolean }
+const { lang, noindex = false, path = homePath } = Astro.props;
+const d = t(lang);
+const title = Astro.props.title ?? d.meta.title;
+const description = Astro.props.description ?? d.meta.description;
+const site = Astro.site!;
+const canonical = new URL(path(lang), site).href;
+const og = await getImage({ src: heroImg, width: 1024, format: "jpg" });
+const ogUrl = new URL(og.src, site).href;
+const hero = await getImage({ src: heroImg, widths: [480, 768, 1024], format: "avif" });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  "@id": `${hotel.url}/#hotel`,
+  name: hotel.name,
+  url: canonical,
+  description,
+  image: [ogUrl, new URL((await getImage({ src: roomImg, format: "jpg" })).src, site).href, new URL((await getImage({ src: aptImg, format: "jpg" })).src, site).href],
+  email: hotel.email,
+  ...(hotel.phone ? { telephone: hotel.phone } : {}),
+  address: { "@type": "PostalAddress", streetAddress: hotel.address.street, addressLocality: hotel.address.locality, postalCode: hotel.address.postalCode, addressRegion: hotel.address.region, addressCountry: hotel.address.country },
+  geo: { "@type": "GeoCoordinates", latitude: hotel.geo.lat, longitude: hotel.geo.lon },
+  hasMap: `https://www.google.com/maps/search/?api=1&query=${hotel.geo.lat},${hotel.geo.lon}`,
+  availableLanguage: ["el", "en"],
+  ...(hotel.social.length ? { sameAs: hotel.social } : {}),
+  potentialAction: { "@type": "ReserveAction", target: { "@type": "EntryPoint", urlTemplate: `${hotel.bookingBase}?lang=${lang}&utm_source=website`, inLanguage: lang } },
+};
+---
+<!doctype html>
+<html lang={lang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {!noindex && locales.map((l) => <link rel="alternate" hreflang={l.hreflang} href={new URL(path(l.code), site).href} />)}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={new URL(path("en"), site).href} />}
+    <meta name="theme-color" content="#f7f3ec" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" as="image" type="image/avif" imagesrcset={hero.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={hotel.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="768" />
+    <meta property="og:locale" content={localeOf(lang).ogLocale} />
+    {locales.filter((l) => l.code !== lang).map((l) => <meta property="og:locale:alternate" content={l.ogLocale} />)}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="geo.position" content={`${hotel.geo.lat};${hotel.geo.lon}`} />
+    <meta name="geo.placename" content="Piso Livadi, Paros" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- Motion only when the device allows it; CSS keys reveal states off .motion so no-JS / reduced-motion users see everything. -->
+    <script is:inline>
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("motion");
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">{d.a11y.skip}</a>
+    <slot />
+  </body>
+</html>

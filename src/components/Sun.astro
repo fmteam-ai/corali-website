@@ -1,0 +1,10 @@
+---
+// The Corali sun (from the logo), drawn as a light inline SVG so it can spin and recolour.
+const { class: cls, ...rest } = Astro.props;
+const rays = Array.from({ length: 12 }, (_, i) => i * 30);
+---
+<svg class:list={["sun", cls]} viewBox="0 0 100 100" aria-hidden="true" focusable="false" {...rest}>
+  <g class="sun-rays">{rays.map((a) => <path d="M50 4 L55 18 L45 18 Z" transform={`rotate(${a} 50 50)`} />)}</g>
+  <circle cx="50" cy="50" r="24" class="sun-core" />
+  <path class="sun-spiral" d="M50 50 m-2 0 a2 2 0 1 1 4 0 a6 6 0 1 1 -10 0 a10 10 0 1 1 18 0 a14 14 0 1 1 -24 4" />
+</svg>

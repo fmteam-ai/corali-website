@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/hotel-corali-logo.png";
+import { locales, localeOf, homePath, t, type Lang } from "../i18n";
+import { bookUrl } from "../data/hotel";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const home = homePath(lang);
+const links = [
+  { href: `${home}#rooms`, label: d.nav.rooms },
+  { href: `${home}#beaches`, label: d.nav.beaches },
+  { href: `${home}#village`, label: d.nav.village },
+  { href: `${home}#contact`, label: d.nav.contact },
+];
+---
+<header class="site-header" data-header>
+  <div class="bar">
+    <a class="brand" href={home} aria-label={d.a11y.home}>
+      <Image src={logo} alt="Hotel Corali · Piso Livadi · Paros" width={150} height={38} densities={[1, 2]} loading="eager" />
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>{links.map((l) => <li><a href={l.href} data-scroll-link>{l.label}</a></li>)}</ul>
+    </nav>
+    <div class="actions">
+      <details class="lang" data-lang-menu>
+        <summary aria-label={d.nav.language}>{localeOf(lang).short}<svg viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" /></svg></summary>
+        <ul>
+          {locales.map((l) => (
+            <li><a href={homePath(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.label}</a></li>
+          ))}
+        </ul>
+      </details>
+      <a class="btn btn-coral btn-sm" href={bookUrl(lang, "header")} rel="noopener" data-book>{d.nav.book}</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-btn>
+        <span class="sr-only" data-open-label>{d.nav.menu}</span><span class="sr-only" data-close-label hidden>{d.nav.close}</span>
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+    <ul>{links.map((l, i) => <li style={`--i:${i}`}><a href={l.href} data-scroll-link>{l.label}</a></li>)}</ul>
+    <div class="mobile-langs">
+      {locales.map((l) => <a href={homePath(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.short}</a>)}
+    </div>
+  </div>
+</header>

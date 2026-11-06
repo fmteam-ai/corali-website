@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "title": "Hotel Corali Paros | Seaside hotel in Piso Livadi",
+    "description": "Hotel Corali in Piso Livadi, Paros: rooms and apartments with balconies above the little harbour, 200 m from the beach and 300 m from Logaras. Book direct for the best rate."
+  },
+  "a11y": { "skip": "Skip to content", "home": "Hotel Corali — home" },
+  "nav": {
+    "rooms": "Rooms",
+    "beaches": "Beaches",
+    "village": "Piso Livadi",
+    "contact": "Contact",
+    "book": "Book",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language"
+  },
+  "hero": {
+    "eyebrow": "Piso Livadi · Paros · Cyclades",
+    "titleTop": "Your balcony",
+    "titleBottom": "on the Aegean",
+    "lead": "A family-run hotel above the little harbour of Piso Livadi. Wake up to fishing boats, walk down to the sea.",
+    "cta": "Check availability",
+    "secondary": "The rooms",
+    "scroll": "Scroll",
+    "photoAlt": "View from a Hotel Corali balcony over Piso Livadi harbour towards Naxos"
+  },
+  "booking": {
+    "title": "Book direct",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "submit": "Search",
+    "perk": "Best rate when you book directly with us"
+  },
+  "marquee": ["Piso Livadi", "Logaras 300 m", "Harbour sunsets", "Paros", "Naxos views", "Fish tavernas", "Cycladic summer"],
+  "intro": {
+    "kicker": "Corali",
+    "title": "White, blue and the sound of the harbour.",
+    "body": "On the quieter east coast of Paros, Corali looks over the little harbour of Piso Livadi with Naxos across the water. Cycladic arches, light everywhere and hosts who know every corner of the island.",
+    "stats": [
+      { "value": 200, "suffix": " m", "label": "to the village beach" },
+      { "value": 300, "suffix": " m", "label": "to sandy Logaras" },
+      { "value": 15, "suffix": "+", "label": "beaches within 30 minutes" }
+    ]
+  },
+  "rooms": {
+    "kicker": "Stay",
+    "title": "Rooms full of light and sea",
+    "lead": "Simple, spotless, Cycladic. Choose a room for two or an apartment for family and friends.",
+    "items": [
+      {
+        "name": "Double rooms",
+        "text": "A stone feature wall, warm light and a balcony door that opens to the morning sun.",
+        "tags": ["Balcony", "For 2 guests", "Quiet setting"],
+        "alt": "Hotel Corali double room with stone wall and balcony door"
+      },
+      {
+        "name": "Apartments",
+        "text": "A living room with a Cycladic fireplace, dining area and balcony — space for the whole family.",
+        "tags": ["Living room & kitchen", "Families", "Air conditioning"],
+        "alt": "Whitewashed apartment living room with Cycladic fireplace and dining table"
+      },
+      {
+        "name": "The view",
+        "text": "Morning coffee or chilled wine at dusk, with the harbour and Naxos in front of you.",
+        "tags": ["Harbour view", "Naxos view", "Sunny"],
+        "alt": "Table with fruit and wine on a balcony overlooking the harbour"
+      }
+    ],
+    "cta": "See rates & availability"
+  },
+  "beaches": {
+    "kicker": "Meltemi guide",
+    "title": "Where to swim today?",
+    "lead": "On Paros the wind decides. See the wind right now in Piso Livadi and which beaches are sheltered — or pick a direction yourself.",
+    "live": "Now in Piso Livadi",
+    "wind": "Wind",
+    "beaufort": "Beaufort",
+    "sea": "Sea",
+    "air": "Air",
+    "pick": "Where is the wind from?",
+    "sheltered": "Sheltered with this wind",
+    "exposed": "Windy or wavy",
+    "minutes": "min",
+    "km": "km",
+    "loading": "Loading weather…",
+    "error": "Weather could not be loaded — pick a wind direction.",
+    "source": "Weather: Open-Meteo. Driving distances from the hotel.",
+    "calm": "Flat calm — every beach is lovely today!"
+  },
+  "winds": {
+    "N": "North",
+    "NE": "North-east",
+    "E": "East",
+    "SE": "South-east",
+    "S": "South",
+    "SW": "South-west",
+    "W": "West",
+    "NW": "North-west"
+  },
+  "village": {
+    "kicker": "The village",
+    "title": "Piso Livadi, the authentic side of Paros",
+    "body": "A fishing village with a marina, tavernas on the water's edge and cafés that open early. Away from the bustle, close to everything.",
+    "items": [
+      { "title": "Logaras", "text": "A sandy beach with shallow water, perfect for children — 300 metres." },
+      { "title": "Lefkes & Marpissa", "text": "Traditional hill villages for an afternoon stroll." },
+      { "title": "Naoussa", "text": "The island's cosmopolitan harbour, about 14 km away." },
+      { "title": "Parikia", "text": "The main port and the Ekatontapyliani church, about 16 km away." }
+    ]
+  },
+  "cta": {
+    "title": "Your summer starts here.",
+    "text": "Book directly with Corali for the best available rate and a direct line to us.",
+    "button": "Book now"
+  },
+  "contact": {
+    "title": "Contact",
+    "address": "Address",
+    "email": "Email",
+    "phone": "Phone",
+    "directions": "Directions on the map"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "auto": "This page was translated automatically."
+  },
+  "suggest": { "text": "This page is available in English.", "go": "Switch", "dismiss": "No, thanks" },
+  "notFound": { "title": "Page not found", "text": "It probably went for a swim. Head back home.", "home": "Home" }
+}

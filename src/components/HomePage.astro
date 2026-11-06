@@ -1,0 +1,217 @@
+---
+import { Picture } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import Header from "./Header.astro";
+import Sun from "./Sun.astro";
+import { t, localeOf, locales, homePath, type Lang } from "../i18n";
+import { hotel, bookUrl, mapsUrl } from "../data/hotel";
+import { beaches, winds, windDeg } from "../data/beaches";
+import harbour from "../assets/corali-harbour.jpg";
+import room from "../assets/corali-room.jpg";
+import apartment from "../assets/corali-apartment.jpg";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const auto = localeOf(lang).auto;
+const roomImgs = [room, apartment, harbour];
+const beachName = (b: (typeof beaches)[number]) => (lang === "el" ? b.el : b.latin);
+const year = new Date().getFullYear();
+const elShort: Record<string, string> = { N: "Β", NE: "ΒΑ", E: "Α", SE: "ΝΑ", S: "Ν", SW: "ΝΔ", W: "Δ", NW: "ΒΔ" };
+// Data the client script needs (labels for the live weather card, suggestion banner).
+const clientData = {
+  lang,
+  winds: d.winds,
+  b: { wind: d.beaches.wind, beaufort: d.beaches.beaufort, sea: d.beaches.sea, air: d.beaches.air, error: d.beaches.error, calm: d.beaches.calm },
+  geo: hotel.geo,
+  bookBase: bookUrl(lang, "dates"),
+  alternates: Object.fromEntries(locales.map((l) => [l.code, { href: homePath(l.code), text: t(l.code).suggest }])),
+};
+---
+<Base lang={lang}>
+  <Header lang={lang} />
+  <main id="main">
+    <!-- HERO: the Cycladic arch window opens to the full view as you scroll -->
+    <section class="hero" data-hero aria-labelledby="hero-title">
+      <div class="hero-sticky">
+        <div class="hero-copy">
+          <p class="eyebrow" data-hero-fade>{d.hero.eyebrow}</p>
+          <h1 id="hero-title" class="hero-title">
+            <span class="line"><span data-hero-line>{d.hero.titleTop}</span></span>
+            <span class="line accent"><span data-hero-line>{d.hero.titleBottom}</span></span>
+          </h1>
+        </div>
+        <div class="hero-slot" aria-hidden="true" data-hero-slot></div>
+        <div class="hero-arch" data-hero-arch>
+          <Picture src={harbour} formats={["avif", "webp"]} widths={[480, 768, 1024]} sizes="100vw" alt={d.hero.photoAlt} loading="eager" fetchpriority="high" class="hero-img" data-hero-img />
+        </div>
+        <div class="hero-bottom" data-hero-fade>
+          <p class="hero-lead">{d.hero.lead}</p>
+          <div class="hero-ctas">
+            <a class="btn btn-coral" href={bookUrl(lang, "hero")} rel="noopener" data-book>{d.hero.cta}<span aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#rooms" data-scroll-link>{d.hero.secondary}</a>
+          </div>
+        </div>
+        <span class="scroll-cue" aria-hidden="true">{d.hero.scroll}</span>
+      </div>
+    </section>
+
+    <!-- Quick dates → booking engine (works without JS: GET form) -->
+    <section class="quickbook" aria-label={d.booking.title}>
+      <form class="quickbook-form" action="https://booking.hotelcorali.gr/book" method="get" data-quickbook>
+        <input type="hidden" name="lang" value={lang} />
+        <p class="qb-title"><Sun class="qb-sun" /> {d.booking.title}<small>{d.booking.perk}</small></p>
+        <label>{d.booking.checkIn}<input type="date" name="checkIn" required data-in /></label>
+        <label>{d.booking.checkOut}<input type="date" name="checkOut" required data-out /></label>
+        <input type="hidden" name="utm_source" value="website" />
+        <input type="hidden" name="utm_medium" value="referral" />
+        <input type="hidden" name="utm_content" value="dates" />
+        <button class="btn btn-coral" type="submit">{d.booking.submit}</button>
+      </form>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" data-marquee>
+        {[0, 1].map(() => <span class="marquee-group">{d.marquee.map((m) => <span>{m}<Sun class="marquee-sun" /></span>)}</span>)}
+      </div>
+    </div>
+
+    <section class="intro container" aria-labelledby="intro-title">
+      <p class="kicker" data-reveal>{d.intro.kicker}</p>
+      <h2 id="intro-title" class="statement" data-words>{d.intro.title}</h2>
+      <p class="intro-body" data-reveal>{d.intro.body}</p>
+      <ul class="stats">
+        {d.intro.stats.map((s) => (
+          <li data-reveal><strong><span data-count={s.value}>{s.value}</span>{s.suffix}</strong><span>{s.label}</span></li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="rooms" class="rooms" aria-labelledby="rooms-title" data-rooms>
+      <div class="rooms-head container">
+        <p class="kicker" data-reveal>{d.rooms.kicker}</p>
+        <h2 id="rooms-title" class="h2" data-reveal>{d.rooms.title}</h2>
+        <p class="lead" data-reveal>{d.rooms.lead}</p>
+      </div>
+      <div class="rooms-track" data-rooms-track>
+        {d.rooms.items.map((r, i) => (
+          <article class="room-card">
+            <div class="room-media">
+              <Picture src={roomImgs[i]} formats={["avif", "webp"]} widths={[400, 700, 1024]} sizes="(min-width: 900px) 40vw, 85vw" alt={r.alt} loading="lazy" />
+              <span class="room-num">0{i + 1}</span>
+            </div>
+            <h3>{r.name}</h3>
+            <p>{r.text}</p>
+            <ul class="tags">{r.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </article>
+        ))}
+        <a class="room-card room-cta" href={bookUrl(lang, "rooms")} rel="noopener" data-book>
+          <Sun class="room-cta-sun" />
+          <span>{d.rooms.cta}</span><span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="beaches" class="beaches" aria-labelledby="beaches-title" data-beaches>
+      <div class="container beaches-grid">
+        <div class="beaches-side">
+          <p class="kicker" data-reveal>{d.beaches.kicker}</p>
+          <h2 id="beaches-title" class="h2" data-reveal>{d.beaches.title}</h2>
+          <p class="lead" data-reveal>{d.beaches.lead}</p>
+          <div class="live" aria-live="polite" data-live>
+            <p class="live-label"><i class="pulse"></i>{d.beaches.live}</p>
+            <p class="live-values" data-live-values>{d.beaches.loading}</p>
+          </div>
+          <fieldset class="compass" data-compass>
+            <legend>{d.beaches.pick}</legend>
+            <div class="compass-dial">
+              <svg class="compass-arrow" viewBox="0 0 100 100" aria-hidden="true" data-arrow><path d="M50 14 L58 50 L50 44 L42 50 Z" /><circle cx="50" cy="50" r="4" /></svg>
+              {winds.map((w) => (
+                <label style={`--a:${windDeg[w]}deg`} title={d.winds[w]}>
+                  <input type="radio" name="wind" value={w} checked={w === "N"} />
+                  <span aria-hidden="true">{lang === "el" ? elShort[w] : w}</span>
+                  <span class="sr-only">{d.winds[w]}</span>
+                </label>
+              ))}
+            </div>
+            <p class="compass-name" data-wind-name>{d.winds.N}</p>
+          </fieldset>
+        </div>
+        <div class="beach-list-wrap">
+          <h3 class="list-title"><span data-list-title>{d.beaches.sheltered}</span></h3>
+          <ol class="beach-list" data-beach-list>
+            {beaches.map((b) => (
+              <li data-sheltered={b.sheltered.join(" ")} class={b.sheltered.includes("N") ? "is-sheltered" : ""}>
+                <span class="beach-name">{beachName(b)}</span>
+                <span class="beach-meta">{b.km < 1 ? `${Math.round(b.km * 1000)} m` : `${b.km} ${d.beaches.km}`} · {b.minutes} {d.beaches.minutes}</span>
+                <span class="beach-flag" aria-hidden="true"></span>
+              </li>
+            ))}
+          </ol>
+          <p class="fineprint">{d.beaches.source}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="village" class="village" aria-labelledby="village-title">
+      <div class="village-media" data-parallax>
+        <Picture src={harbour} formats={["avif", "webp"]} widths={[480, 768, 1024]} sizes="100vw" alt="" loading="lazy" />
+      </div>
+      <div class="container village-inner">
+        <p class="kicker" data-reveal>{d.village.kicker}</p>
+        <h2 id="village-title" class="h2" data-reveal>{d.village.title}</h2>
+        <p class="lead" data-reveal>{d.village.body}</p>
+        <ul class="village-list">
+          {d.village.items.map((v, i) => <li data-reveal><span class="n">0{i + 1}</span><h3>{v.title}</h3><p>{v.text}</p></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <Sun class="cta-sun" data-spin />
+      <div class="container cta-inner">
+        <h2 id="cta-title" class="cta-title" data-words>{d.cta.title}</h2>
+        <p data-reveal>{d.cta.text}</p>
+        <a class="btn btn-white btn-lg" href={bookUrl(lang, "footer-cta")} rel="noopener" data-book data-magnetic>{d.cta.button}<span aria-hidden="true">→</span></a>
+      </div>
+      <p class="giant" aria-hidden="true" data-giant>Corali</p>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h2 class="h3">{d.contact.title}</h2>
+        <address>
+          <p><span class="label">{d.contact.address}</span>{lang === "el" ? hotel.addressEl : "Piso Livadi, Paros 844 00, Greece"}</p>
+          <p><span class="label">{d.contact.email}</span><a href={`mailto:${hotel.email}`}>{hotel.email}</a></p>
+          {hotel.phone && <p><span class="label">{d.contact.phone}</span><a href={`tel:${hotel.phone}`}>{hotel.phone}</a></p>}
+        </address>
+        <a class="btn btn-ghost-light btn-sm" href={mapsUrl} target="_blank" rel="noopener">{d.contact.directions} ↗</a>
+      </div>
+      <nav aria-label={d.nav.language} class="footer-langs">
+        {locales.map((l) => <a href={homePath(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.label}</a>)}
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <p>© {year} Hotel Corali · Piso Livadi, Paros. {d.footer.rights}</p>
+      {auto && <p class="auto-note">{d.footer.auto} <a href={homePath("en")} hreflang="en">English</a></p>}
+    </div>
+  </footer>
+
+  <!-- Mobile sticky booking bar -->
+  <div class="mobile-book" data-mobile-book>
+    <a class="btn btn-coral" href={bookUrl(lang, "mobile-bar")} rel="noopener" data-book>{d.nav.book}<span aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="suggest" role="dialog" aria-live="polite" hidden data-suggest>
+    <p data-suggest-text></p>
+    <a class="btn btn-coral btn-sm" data-suggest-go href="/"></a>
+    <button type="button" class="link" data-suggest-dismiss></button>
+  </div>
+
+  <script type="application/json" id="corali-data" set:html={JSON.stringify(clientData)} />
+  <script>
+    import "../scripts/main.ts";
+  </script>
+</Base>

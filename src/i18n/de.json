@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Hotel Corali Paros | Hotel am Meer in Piso Livadi",
+    "description": "Hotel Corali in Piso Livadi, Paros: Zimmer und Apartments mit Balkon über dem kleinen Hafen, 200 m vom Strand und 300 m von Logaras. Direkt buchen zum besten Preis."
+  },
+  "a11y": { "skip": "Zum Inhalt springen", "home": "Hotel Corali — Startseite" },
+  "nav": { "rooms": "Zimmer", "beaches": "Strände", "village": "Piso Livadi", "contact": "Kontakt", "book": "Buchen", "menu": "Menü", "close": "Schließen", "language": "Sprache" },
+  "hero": {
+    "eyebrow": "Piso Livadi · Paros · Kykladen",
+    "titleTop": "Ihr Balkon",
+    "titleBottom": "über der Ägäis",
+    "lead": "Ein Familienhotel über dem kleinen Hafen von Piso Livadi. Aufwachen mit Blick auf die Fischerboote, zu Fuß ans Meer.",
+    "cta": "Verfügbarkeit prüfen",
+    "secondary": "Die Zimmer",
+    "scroll": "Scrollen",
+    "photoAlt": "Blick von einem Balkon des Hotel Corali über den Hafen von Piso Livadi nach Naxos"
+  },
+  "booking": { "title": "Direkt buchen", "checkIn": "Anreise", "checkOut": "Abreise", "submit": "Suchen", "perk": "Bester Preis bei Direktbuchung" },
+  "marquee": ["Piso Livadi", "Logaras 300 m", "Sonnenuntergang am Hafen", "Paros", "Blick auf Naxos", "Fischtavernen", "Sommer auf den Kykladen"],
+  "intro": {
+    "kicker": "Corali",
+    "title": "Weiß, Blau und das Geräusch des Hafens.",
+    "body": "An der ruhigeren Ostküste von Paros blickt das Corali auf den kleinen Hafen von Piso Livadi und hinüber nach Naxos. Kykladische Bögen, überall Licht und Gastgeber, die jeden Winkel der Insel kennen.",
+    "stats": [
+      { "value": 200, "suffix": " m", "label": "zum Dorfstrand" },
+      { "value": 300, "suffix": " m", "label": "zum Sandstrand Logaras" },
+      { "value": 15, "suffix": "+", "label": "Strände in 30 Minuten" }
+    ]
+  },
+  "rooms": {
+    "kicker": "Unterkunft",
+    "title": "Zimmer voller Licht und Meer",
+    "lead": "Schlicht, makellos sauber, kykladisch. Ein Zimmer für zwei oder ein Apartment für Familie und Freunde.",
+    "items": [
+      { "name": "Doppelzimmer", "text": "Natursteinwand, warmes Licht und eine Balkontür, die sich zur Morgensonne öffnet.", "tags": ["Balkon", "Für 2 Gäste", "Ruhige Lage"], "alt": "Doppelzimmer im Hotel Corali mit Steinwand und Balkontür" },
+      { "name": "Apartments", "text": "Wohnzimmer mit kykladischem Kamin, Essbereich und Balkon — Platz für die ganze Familie.", "tags": ["Wohnzimmer & Küche", "Familien", "Klimaanlage"], "alt": "Weißes Apartment-Wohnzimmer mit kykladischem Kamin und Esstisch" },
+      { "name": "Der Ausblick", "text": "Morgenkaffee oder kühler Wein in der Dämmerung, mit Hafen und Naxos vor Augen.", "tags": ["Hafenblick", "Blick auf Naxos", "Sonnig"], "alt": "Tisch mit Obst und Wein auf einem Balkon mit Hafenblick" }
+    ],
+    "cta": "Preise & Verfügbarkeit"
+  },
+  "beaches": {
+    "kicker": "Meltemi-Guide",
+    "title": "Wo baden wir heute?",
+    "lead": "Auf Paros entscheidet der Wind. Sehen Sie den aktuellen Wind in Piso Livadi und welche Strände geschützt sind — oder wählen Sie selbst eine Richtung.",
+    "live": "Jetzt in Piso Livadi",
+    "wind": "Wind",
+    "beaufort": "Beaufort",
+    "sea": "Meer",
+    "air": "Luft",
+    "pick": "Woher weht der Wind?",
+    "sheltered": "Geschützt bei diesem Wind",
+    "exposed": "Windig oder Wellen",
+    "minutes": "Min.",
+    "km": "km",
+    "loading": "Wetter wird geladen…",
+    "error": "Wetter nicht verfügbar — wählen Sie eine Windrichtung.",
+    "source": "Wetter: Open-Meteo. Fahrstrecken ab dem Hotel.",
+    "calm": "Windstille — heute ist jeder Strand herrlich!"
+  },
+  "winds": { "N": "Nord", "NE": "Nordost", "E": "Ost", "SE": "Südost", "S": "Süd", "SW": "Südwest", "W": "West", "NW": "Nordwest" },
+  "village": {
+    "kicker": "Das Dorf",
+    "title": "Piso Livadi, die authentische Seite von Paros",
+    "body": "Ein Fischerdorf mit Marina, Tavernen direkt am Wasser und Cafés, die früh öffnen. Abseits vom Trubel, nah an allem.",
+    "items": [
+      { "title": "Logaras", "text": "Sandstrand mit flachem Wasser, ideal für Kinder — 300 Meter." },
+      { "title": "Lefkes & Marpissa", "text": "Traditionelle Bergdörfer für einen Nachmittagsspaziergang." },
+      { "title": "Naoussa", "text": "Der kosmopolitische Hafen der Insel, etwa 14 km." },
+      { "title": "Parikia", "text": "Der Haupthafen und die Kirche Ekatontapyliani, etwa 16 km." }
+    ]
+  },
+  "cta": { "title": "Ihr Sommer beginnt hier.", "text": "Buchen Sie direkt beim Corali für den besten verfügbaren Preis und den direkten Draht zu uns.", "button": "Jetzt buchen" },
+  "contact": { "title": "Kontakt", "address": "Adresse", "email": "E-Mail", "phone": "Telefon", "directions": "Route auf der Karte" },
+  "footer": { "rights": "Alle Rechte vorbehalten.", "auto": "Diese Seite wurde automatisch übersetzt." },
+  "suggest": { "text": "Diese Seite gibt es auch auf Deutsch.", "go": "Wechseln", "dismiss": "Nein, danke" },
+  "notFound": { "title": "Seite nicht gefunden", "text": "Sie ist wohl schwimmen gegangen. Zurück zur Startseite.", "home": "Startseite" }
+}
