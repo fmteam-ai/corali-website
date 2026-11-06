@@ -1,0 +1,10 @@
+---
+import V2Page from "../../../v2/V2Page.astro";
+import { locales, defaultLocale } from "../../../i18n";
+
+export function getStaticPaths() {
+  return locales.filter((l) => l.code !== defaultLocale).map((l) => ({ params: { lang: l.code } }));
+}
+const { lang } = Astro.params;
+---
+<V2Page lang={lang!} />

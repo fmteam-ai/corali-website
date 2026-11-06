@@ -234,5 +234,142 @@
       "Open balcony door with sea view",
       "The harbour lit up at night, seen from the balcony"
     ]
+  },
+  "v2": {
+    "title": "Hotel Corali Paros — sea-view rooms in Piso Livadi | Live prices",
+    "kicker": "Piso Livadi · Paros · Family-run",
+    "heroA": "Paros,",
+    "heroB": "slowly.",
+    "lead": "Sea-view rooms and a penthouse above a fishing harbour, run by one family. Check live prices right here.",
+    "bar": {
+      "title": "Live prices",
+      "guests": "Guests",
+      "search": "See prices"
+    },
+    "nav": {
+      "prices": "Prices",
+      "rooms": "Rooms",
+      "day": "A day here",
+      "ask": "Ask",
+      "book": "Book",
+      "classic": "Classic version"
+    },
+    "live": {
+      "title": "Right now in Piso Livadi",
+      "time": "Local time",
+      "sunset": "Sunset",
+      "sunrise": "Sunrise",
+      "sea": "Sea",
+      "wind": "Wind",
+      "calm": "Calmest beach",
+      "webcam": "Live webcam"
+    },
+    "results": {
+      "title": "Your stay",
+      "for": "{in} → {out} · {n} nights · {g} guests",
+      "loading": "Checking live availability…",
+      "none": "No rooms are free on these dates. Try other dates or ask us.",
+      "error": "Live prices could not be loaded right now.",
+      "open": "Continue on the booking page",
+      "night": "per night",
+      "total": "total",
+      "flex": "Free cancellation up to {d} days before",
+      "nonref": "Non-refundable · best price",
+      "book": "Book",
+      "left": "Only {n} left",
+      "cap": "Up to {n} guests",
+      "deposit": "Pay {p}% today, the rest later",
+      "save": "Save {x}"
+    },
+    "perks": {
+      "kicker": "Book direct",
+      "title": "Better here than anywhere else",
+      "items": [
+        {
+          "t": "Our best price",
+          "x": "The lowest rates for Corali are on this website."
+        },
+        {
+          "t": "Small deposit",
+          "x": "Secure your room with 30% today; the balance is paid later."
+        },
+        {
+          "t": "Flexible rates",
+          "x": "Free cancellation up to 14 days before arrival on flexible rates."
+        },
+        {
+          "t": "Straight to the family",
+          "x": "Your requests reach us directly — no call centre, no middlemen."
+        }
+      ]
+    },
+    "rooms": {
+      "kicker": "Stay",
+      "title": "Choose your view",
+      "all": "All",
+      "double": "Double bed",
+      "twin": "Twin beds",
+      "suite": "Penthouse",
+      "from": "from",
+      "night": "/ night"
+    },
+    "day": {
+      "kicker": "A day at Corali",
+      "title": "From sunrise over Naxos to harbour lights",
+      "steps": [
+        {
+          "time": "07:30",
+          "t": "Sunrise coffee",
+          "x": "The sun rises behind Naxos, straight onto your balcony."
+        },
+        {
+          "time": "11:00",
+          "t": "Logaras beach",
+          "x": "Three hundred metres on foot: soft sand and shallow, clear water."
+        },
+        {
+          "time": "14:00",
+          "t": "Lunch by the boats",
+          "x": "Fresh fish and local wine at the tavernas on the harbour."
+        },
+        {
+          "time": "18:00",
+          "t": "Island hopping",
+          "x": "Boats to Naxos and the Small Cyclades — or a stroll up to Lefkes."
+        },
+        {
+          "time": "21:00",
+          "t": "Harbour lights",
+          "x": "The bay lights up below you. A glass, the balcony, the night."
+        }
+      ]
+    },
+    "ask": {
+      "kicker": "Concierge",
+      "title": "Ask Corali, any time",
+      "text": "Our assistant answers in your language about rooms, prices, the island and your arrival — day and night.",
+      "q1": "Which beach is calm today?",
+      "a1": "With today's north wind, Logaras is sheltered and 300 m away.",
+      "q2": "Do you have a room for 4?",
+      "a2": "Our 70 m² penthouse has two bedrooms and a terrace over the harbour.",
+      "button": "Start a conversation"
+    },
+    "reviews": {
+      "title": "What guests remember"
+    },
+    "where": {
+      "kicker": "Getting here",
+      "title": "Close to everything, away from the crowds",
+      "map": "Open in Google Maps"
+    },
+    "theme": {
+      "label": "Theme",
+      "auto": "Auto (sunset)",
+      "day": "Day",
+      "night": "Night"
+    },
+    "footer": {
+      "note": "A family hotel in Piso Livadi, Paros."
+    }
   }
 }

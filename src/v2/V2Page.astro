@@ -1,0 +1,328 @@
+---
+// Corali v2 — "booking-first, live, quiet luxury" alternative design. Same data, photos and languages as v1.
+import "@fontsource-variable/literata/wght.css";
+import "@fontsource-variable/literata/wght-italic.css";
+import "@fontsource-variable/inter-tight/wght.css";
+import "./v2.css";
+import { Picture, Image } from "astro:assets";
+import { t, locales, localeOf, homePath, v2Path, asset, type Lang } from "../i18n";
+import { hotel, bookUrl, mapsUrl } from "../data/hotel";
+import { rooms } from "../data/rooms";
+import { reviews } from "../data/reviews";
+import { beaches } from "../data/beaches";
+import logo from "../assets/hotel-corali-logo.png";
+import heroImg from "../assets/hero-arch-view.jpg";
+import imgBalcony from "../assets/gallery/balcony-bay.jpg";
+import imgLogaras from "../assets/gallery/logaras.jpg";
+import imgHarbour from "../assets/gallery/village-harbour.jpg";
+import imgAerial from "../assets/gallery/aerial.jpg";
+import imgNight from "../assets/gallery/night-balcony.jpg";
+import imgTerrace from "../assets/gallery/penthouse-terrace.jpg";
+import imgDoor from "../assets/gallery/room-door-sea.jpg";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const v = d.v2;
+const loc = localeOf(lang);
+const intl = lang === "en" ? "en-GB" : loc.hreflang;
+const eur = (n: number) => new Intl.NumberFormat(intl, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+const dayImgs = [imgBalcony, imgLogaras, imgHarbour, imgAerial, imgNight];
+const roomKind = (id: string) => (id === "penthouse" ? "suite" : id.toLowerCase().includes("twin") ? "twin" : "double");
+const canonical = new URL(homePath(lang), Astro.site).href;
+const year = new Date().getFullYear();
+const og = (await import("astro:assets")).getImage;
+const ogImg = await og({ src: heroImg, width: 1200, height: 900, format: "jpg" });
+const heroPre = await og({ src: heroImg, widths: [640, 1080, 1600, 1920], format: "avif" });
+
+const roomImgs = Object.fromEntries(await Promise.all(rooms.map(async (r) => [r.id, (await og({ src: r.img, width: 720, format: "webp" })).src])));
+const client = {
+  lang,
+  intl,
+  geo: hotel.geo,
+  book: hotel.bookingBase,
+  winds: d.winds,
+  beaches: beaches.map((b) => ({ name: lang === "el" ? b.el : b.latin, km: b.km, sheltered: b.sheltered })),
+  cal: { checkIn: d.booking.checkIn, checkOut: d.booking.checkOut, prev: d.booking.prev, next: d.booking.next, close: d.booking.close, nights: d.booking.nights, night: d.booking.night },
+  r: v.results,
+  roomNames: Object.fromEntries(rooms.map((r) => [r.id, d.rooms.items[r.id].name])),
+  roomImgs,
+};
+---
+<!doctype html>
+<html lang={lang} data-theme="day">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{v.title}</title>
+    <meta name="description" content={d.meta.description} />
+    <!-- Alternative design: not indexed; the classic page is canonical. -->
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#f3ede4" />
+    <link rel="icon" href={asset("favicon.svg")} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={asset("apple-touch-icon.png")} />
+    <link rel="preload" as="image" type="image/avif" imagesrcset={heroPre.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
+    <meta property="og:title" content={v.title} />
+    <meta property="og:description" content={d.meta.description} />
+    <meta property="og:image" content={new URL(ogImg.src, Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) root.classList.add("motion");
+        // Theme: saved choice, else "auto" = night between sunset and sunrise in Paros (rough guess until live data loads).
+        var pref = "auto";
+        try { pref = localStorage.getItem("corali-theme") || "auto"; } catch (e) {}
+        var h = Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hourCycle: "h23", timeZone: "Europe/Athens" }).format(new Date()));
+        root.dataset.themePref = pref;
+        root.dataset.theme = pref === "auto" ? (h >= 19 || h < 7 ? "night" : "day") : pref;
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">{d.a11y.skip}</a>
+
+    <header class="top" data-top>
+      <a class="brand" href={v2Path(lang)} aria-label={d.a11y.home}>
+        <Image src={logo} alt="Hotel Corali" width={140} height={35} densities={[1, 2]} loading="eager" />
+      </a>
+      <nav class="top-nav" aria-label="Main">
+        <a href="#prices" data-link>{v.nav.prices}</a>
+        <a href="#rooms" data-link>{v.nav.rooms}</a>
+        <a href="#day" data-link>{v.nav.day}</a>
+        <a href="#ask" data-link>{v.nav.ask}</a>
+      </nav>
+      <div class="top-actions">
+        <button class="theme-btn" type="button" data-theme-btn aria-label={v.theme.label} data-day={v.theme.day} data-night={v.theme.night}>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" /></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" /></svg>
+          <span class="theme-label" data-theme-label>{v.theme.auto}</span>
+        </button>
+        <details class="langs">
+          <summary>{loc.short}</summary>
+          <ul>{locales.map((l) => <li><a href={v2Path(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.label}</a></li>)}</ul>
+        </details>
+        <a class="pill pill-accent" href={bookUrl(lang, "v2-header")} rel="noopener">{v.nav.book}</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO: full-bleed photo, split headline, booking bar docked at the bottom -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" data-hero-media>
+          <Picture src={heroImg} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[640, 1080, 1600, 1920]} sizes="100vw" alt={d.hero.photoAlt} loading="eager" fetchpriority="high" />
+        </div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow" data-fade>{v.kicker}</p>
+          <h1 id="hero-title" class="hero-title"><span data-split>{v.heroA}</span> <em data-split>{v.heroB}</em></h1>
+          <p class="hero-lead" data-fade>{v.lead}</p>
+        </div>
+
+        <form class="bar" action={hotel.bookingBase} method="get" data-bar>
+          <p class="bar-title"><i class="dot"></i>{v.bar.title}</p>
+          <label class="bar-field">{d.booking.checkIn}<input type="date" name="checkIn" required data-in /></label>
+          <label class="bar-field">{d.booking.checkOut}<input type="date" name="checkOut" required data-out /></label>
+          <label class="bar-field bar-small">{d.booking.adults}<select name="adults" data-adults>{[1, 2, 3, 4, 5, 6].map((n) => <option selected={n === 2}>{n}</option>)}</select></label>
+          <label class="bar-field bar-small">{d.booking.children}<select name="children" data-children>{[0, 1, 2, 3, 4].map((n) => <option>{n}</option>)}</select></label>
+          <input type="hidden" name="lang" value={lang} />
+          <input type="hidden" name="utm_source" value="website" />
+          <input type="hidden" name="utm_medium" value="referral" />
+          <input type="hidden" name="utm_content" value="v2-bar" />
+          <button class="pill pill-accent bar-go" type="submit">{v.bar.search}<span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <!-- LIVE: what's happening in Piso Livadi right now -->
+      <section class="live" aria-label={v.live.title}>
+        <p class="live-title"><i class="dot"></i>{v.live.title}</p>
+        <ul class="live-list" data-live>
+          <li><small>{v.live.time}</small><b data-clock>—</b></li>
+          <li><small>{v.live.sunset}</small><b data-sunset>—</b></li>
+          <li><small>{v.live.sea}</small><b data-sea>—</b></li>
+          <li><small>{v.live.wind}</small><b data-wind>—</b></li>
+          <li><small>{v.live.calm}</small><b data-calm>—</b></li>
+          <li><a href={hotel.webcam} target="_blank" rel="noopener"><small>{v.live.webcam}</small><b>● Live ↗</b></a></li>
+        </ul>
+      </section>
+
+      <!-- RESULTS: live availability from the booking engine, rendered here -->
+      <section id="prices" class="results wrap" aria-live="polite" hidden data-results>
+        <header class="results-head">
+          <p class="kicker">{v.results.title}</p>
+          <h2 class="h2" data-results-title></h2>
+        </header>
+        <div class="results-list" data-results-list></div>
+        <p class="results-foot"><a class="pill pill-line" data-results-open href={bookUrl(lang, "v2-results")} rel="noopener">{v.results.open} →</a></p>
+      </section>
+
+      <!-- PERKS: bento -->
+      <section class="perks wrap" aria-labelledby="perks-title">
+        <div class="bento">
+          <div class="bento-head" data-reveal>
+            <p class="kicker">{v.perks.kicker}</p>
+            <h2 id="perks-title" class="h2">{v.perks.title}</h2>
+          </div>
+          {v.perks.items.map((p, i) => (
+            <article class={`tile tile-${i}`} data-reveal>
+              <span class="tile-n">0{i + 1}</span>
+              <h3>{p.t}</h3>
+              <p>{p.x}</p>
+            </article>
+          ))}
+          <figure class="tile tile-photo" data-reveal>
+            <Picture src={imgTerrace} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800, 1200]} sizes="(min-width: 900px) 40vw, 100vw" alt={d.gallery.alts[3]} loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ROOMS: filter with GSAP Flip -->
+      <section id="rooms" class="rooms wrap" aria-labelledby="rooms-title">
+        <div class="section-head">
+          <div>
+            <p class="kicker" data-reveal>{v.rooms.kicker}</p>
+            <h2 id="rooms-title" class="h2" data-reveal>{v.rooms.title}</h2>
+          </div>
+          <div class="filters" role="group" aria-label={v.rooms.title} data-filters>
+            {(["all", "double", "twin", "suite"] as const).map((k, i) => <button type="button" class="chip" data-filter={k} aria-pressed={i === 0 ? "true" : "false"}>{v.rooms[k]}</button>)}
+          </div>
+        </div>
+        <div class="room-grid" data-room-grid>
+          {rooms.map((r) => {
+            const it = d.rooms.items[r.id];
+            return (
+              <article class={`room room-${r.id}`} data-kind={roomKind(r.id)}>
+                <div class="room-img">
+                  <Picture src={r.img} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[420, 720, 1000]} sizes="(min-width: 900px) 33vw, 92vw" alt={it.alt} loading="lazy" />
+                  <span class="room-tag">{r.floor === 2 ? d.rooms.floor2 : d.rooms.floor1}</span>
+                </div>
+                <div class="room-body">
+                  <h3>{it.name}</h3>
+                  <p class="room-bed">{it.bed}</p>
+                  <p class="room-text">{it.text}</p>
+                  <ul class="room-am">{r.amenities.slice(0, 5).map((a) => <li>{d.amenities[a]}</li>)}</ul>
+                  <div class="room-foot">
+                    <p class="room-price"><small>{v.rooms.from}</small> <b>{eur(r.from)}</b> <small>{v.rooms.night}</small></p>
+                    <a class="pill pill-ink" href="#prices" data-check-prices>{v.bar.search}</a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <p class="fine">* {d.rooms.note}</p>
+      </section>
+
+      <!-- A DAY AT CORALI: pinned scroll story -->
+      <section id="day" class="day" aria-labelledby="day-title" data-day>
+        <div class="day-inner wrap">
+          <div class="day-text">
+            <p class="kicker">{v.day.kicker}</p>
+            <h2 id="day-title" class="h2">{v.day.title}</h2>
+            <ol class="day-steps">
+              {v.day.steps.map((s, i) => (
+                <li class="day-step" data-step={i}>
+                  <span class="day-time">{s.time}</span>
+                  <div><h3>{s.t}</h3><p>{s.x}</p></div>
+                  <figure class="day-thumb"><Picture src={dayImgs[i]} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800]} sizes="92vw" alt="" loading="lazy" /></figure>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div class="day-visual" aria-hidden="true">
+            {dayImgs.map((img, i) => (
+              <figure class="day-frame" data-frame={i}><Picture src={img} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[640, 1000, 1400]} sizes="45vw" alt="" loading="lazy" /></figure>
+            ))}
+            <div class="day-clock"><span data-day-clock>{v.day.steps[0].time}</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI CONCIERGE -->
+      <section id="ask" class="ask wrap" aria-labelledby="ask-title">
+        <div class="ask-card">
+          <div class="ask-copy" data-reveal>
+            <p class="kicker">{v.ask.kicker}</p>
+            <h2 id="ask-title" class="h2">{v.ask.title}</h2>
+            <p>{v.ask.text}</p>
+            <button class="pill pill-accent" type="button" data-ask>{v.ask.button} <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="chat" aria-hidden="true">
+            <p class="bubble me" data-bubble>{v.ask.q1}</p>
+            <p class="bubble bot" data-bubble>{v.ask.a1}</p>
+            <p class="bubble me" data-bubble>{v.ask.q2}</p>
+            <p class="bubble bot" data-bubble>{v.ask.a2}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="reviews" aria-labelledby="reviews-title">
+        <div class="wrap section-head">
+          <div>
+            <p class="kicker" data-reveal>★★★★★ · {hotel.reviewsCount} · {d.reviews.badge}</p>
+            <h2 id="reviews-title" class="h2" data-reveal>{v.reviews.title}</h2>
+          </div>
+        </div>
+        <div class="rev-track">
+          <ul class="rev-row">
+            {[...reviews, ...reviews].map((r, i) => (
+              <li aria-hidden={i >= reviews.length ? "true" : undefined}><blockquote lang={r.lang}>“{r.text}”</blockquote><cite>{r.name} · {r.lang.toUpperCase()}</cite></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <!-- WHERE -->
+      <section class="where wrap" aria-labelledby="where-title">
+        <figure class="where-img" data-reveal>
+          <Picture src={imgDoor} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800, 1200]} sizes="(min-width: 900px) 45vw, 100vw" alt={d.gallery.alts[7]} loading="lazy" />
+        </figure>
+        <div class="where-copy">
+          <p class="kicker" data-reveal>{v.where.kicker}</p>
+          <h2 id="where-title" class="h2" data-reveal>{v.where.title}</h2>
+          <ul class="where-list">
+            {d.village.items.map((x) => <li data-reveal><h3>{x.title}</h3><p>{x.text}</p></li>)}
+          </ul>
+          <a class="pill pill-line" href={mapsUrl} target="_blank" rel="noopener" data-reveal>{v.where.map} ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p class="foot-word" aria-hidden="true" data-word>Corali</p>
+      <div class="wrap foot-grid">
+        <div>
+          <p class="foot-note">{v.footer.note}</p>
+          <address>
+            {lang === "el" ? hotel.addressEl : "Piso Livadi, Paros 844 00, Greece"}<br />
+            <a href={`tel:${hotel.phone}`}>{hotel.phoneDisplay}</a> · <a href={`mailto:${hotel.email}`}>{hotel.email}</a>
+          </address>
+        </div>
+        <nav class="foot-links" aria-label={d.contact.follow}>
+          {hotel.social.map((s) => <a href={s.url} target="_blank" rel="noopener me">{s.name}</a>)}
+        </nav>
+        <nav class="foot-links" aria-label={d.nav.language}>
+          {locales.map((l) => <a href={v2Path(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.short}</a>)}
+          <a class="foot-classic" href={homePath(lang)}>{v.nav.classic} ↗</a>
+        </nav>
+      </div>
+      <p class="wrap foot-copy">© {year} Hotel Corali · {d.footer.rights}{loc.auto && ` · ${d.footer.auto}`}</p>
+    </footer>
+
+    <!-- Mobile app-style bar -->
+    <nav class="appbar" aria-label="Quick">
+      <a href="#rooms" data-link><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6M3 14h18M6 9V6h12v3" /></svg>{v.nav.rooms}</a>
+      <a href="#day" data-link><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg>{v.nav.day}</a>
+      <a href="#prices" class="appbar-main" data-open-bar>{v.nav.prices}</a>
+      <button type="button" data-ask><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" /></svg>{v.nav.ask}</button>
+      <a href={bookUrl(lang, "v2-appbar")} rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3" /><path d="M4 10h16M9 3v4M15 3v4" /></svg>{v.nav.book}</a>
+    </nav>
+
+    <script type="application/json" id="v2-data" set:html={JSON.stringify(client)} />
+    <script>
+      import "./v2.ts";
+    </script>
+  </body>
+</html>

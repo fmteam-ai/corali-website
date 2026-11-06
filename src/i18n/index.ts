@@ -30,3 +30,6 @@ export const staging = base !== "/";
 export const homePath = (code: Lang) => (code === defaultLocale ? base : `${base}${code}/`);
 /** Path of a file in public/, with the base. */
 export const asset = (file: string) => `${base}${file}`;
+
+/** Home page of the alternative design (v2): /v2/, /v2/el/ … */
+export const v2Path = (code: Lang) => (code === defaultLocale ? `${base}v2/` : `${base}v2/${code}/`);

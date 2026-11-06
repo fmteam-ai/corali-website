@@ -234,5 +234,142 @@
       "Offene Balkontür mit Meerblick",
       "Der nächtlich beleuchtete Hafen vom Balkon"
     ]
+  },
+  "v2": {
+    "title": "Hotel Corali Paros — Zimmer mit Meerblick in Piso Livadi | Live-Preise",
+    "kicker": "Piso Livadi · Paros · Familiengeführt",
+    "heroA": "Paros,",
+    "heroB": "ganz langsam.",
+    "lead": "Zimmer mit Meerblick und ein Penthouse über dem Fischerhafen, geführt von einer Familie. Live-Preise direkt hier.",
+    "bar": {
+      "title": "Live-Preise",
+      "guests": "Gäste",
+      "search": "Preise ansehen"
+    },
+    "nav": {
+      "prices": "Preise",
+      "rooms": "Zimmer",
+      "day": "Ein Tag hier",
+      "ask": "Fragen",
+      "book": "Buchen",
+      "classic": "Klassische Version"
+    },
+    "live": {
+      "title": "Gerade in Piso Livadi",
+      "time": "Ortszeit",
+      "sunset": "Sonnenuntergang",
+      "sunrise": "Sonnenaufgang",
+      "sea": "Meer",
+      "wind": "Wind",
+      "calm": "Ruhigster Strand",
+      "webcam": "Live-Webcam"
+    },
+    "results": {
+      "title": "Ihr Aufenthalt",
+      "for": "{in} → {out} · {n} Nächte · {g} Gäste",
+      "loading": "Verfügbarkeit wird geprüft…",
+      "none": "An diesen Daten ist kein Zimmer frei. Andere Daten wählen oder uns fragen.",
+      "error": "Live-Preise konnten gerade nicht geladen werden.",
+      "open": "Weiter zur Buchungsseite",
+      "night": "pro Nacht",
+      "total": "gesamt",
+      "flex": "Kostenlose Stornierung bis {d} Tage vorher",
+      "nonref": "Nicht erstattbar · bester Preis",
+      "book": "Buchen",
+      "left": "Nur noch {n}",
+      "cap": "Bis {n} Gäste",
+      "deposit": "Heute {p}% zahlen, den Rest später",
+      "save": "Sie sparen {x}"
+    },
+    "perks": {
+      "kicker": "Direkt buchen",
+      "title": "Hier besser als anderswo",
+      "items": [
+        {
+          "t": "Unser bester Preis",
+          "x": "Die niedrigsten Preise des Corali finden Sie auf dieser Website."
+        },
+        {
+          "t": "Kleine Anzahlung",
+          "x": "Sichern Sie Ihr Zimmer heute mit 30 %; den Rest zahlen Sie später."
+        },
+        {
+          "t": "Flexible Tarife",
+          "x": "Kostenlose Stornierung bis 14 Tage vor Anreise bei flexiblen Tarifen."
+        },
+        {
+          "t": "Direkt zur Familie",
+          "x": "Ihre Wünsche erreichen uns direkt — ohne Callcenter und Vermittler."
+        }
+      ]
+    },
+    "rooms": {
+      "kicker": "Unterkunft",
+      "title": "Wählen Sie Ihren Ausblick",
+      "all": "Alle",
+      "double": "Doppelbett",
+      "twin": "Einzelbetten",
+      "suite": "Penthouse",
+      "from": "ab",
+      "night": "/ Nacht"
+    },
+    "day": {
+      "kicker": "Ein Tag im Corali",
+      "title": "Vom Sonnenaufgang über Naxos bis zu den Lichtern des Hafens",
+      "steps": [
+        {
+          "time": "07:30",
+          "t": "Kaffee zum Sonnenaufgang",
+          "x": "Die Sonne geht hinter Naxos auf — direkt auf Ihren Balkon."
+        },
+        {
+          "time": "11:00",
+          "t": "Strand Logaras",
+          "x": "Dreihundert Meter zu Fuß: feiner Sand und flaches, klares Wasser."
+        },
+        {
+          "time": "14:00",
+          "t": "Mittagessen bei den Booten",
+          "x": "Frischer Fisch und lokaler Wein in den Tavernen am Hafen."
+        },
+        {
+          "time": "18:00",
+          "t": "Inselhüpfen",
+          "x": "Boote nach Naxos und zu den Kleinen Kykladen — oder ein Spaziergang nach Lefkes."
+        },
+        {
+          "time": "21:00",
+          "t": "Hafenlichter",
+          "x": "Unter Ihnen leuchtet die Bucht. Ein Glas, der Balkon, die Nacht."
+        }
+      ]
+    },
+    "ask": {
+      "kicker": "Concierge",
+      "title": "Fragen Sie das Corali — jederzeit",
+      "text": "Unser Assistent antwortet in Ihrer Sprache zu Zimmern, Preisen, der Insel und Ihrer Anreise — Tag und Nacht.",
+      "q1": "Welcher Strand ist heute windgeschützt?",
+      "a1": "Bei Nordwind ist Logaras geschützt — 300 m entfernt.",
+      "q2": "Haben Sie ein Zimmer für 4?",
+      "a2": "Unser 70-m²-Penthouse hat zwei Schlafzimmer und eine Terrasse über dem Hafen.",
+      "button": "Gespräch beginnen"
+    },
+    "reviews": {
+      "title": "Woran sich Gäste erinnern"
+    },
+    "where": {
+      "kicker": "Anreise",
+      "title": "Nah an allem, fern vom Trubel",
+      "map": "In Google Maps öffnen"
+    },
+    "theme": {
+      "label": "Design",
+      "auto": "Automatisch (Sonnenuntergang)",
+      "day": "Tag",
+      "night": "Nacht"
+    },
+    "footer": {
+      "note": "Ein Familienhotel in Piso Livadi, Paros."
+    }
   }
 }

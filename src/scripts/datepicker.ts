@@ -14,7 +14,7 @@ const todayIso = () => { const t = new Date(); return isoOf(t.getFullYear(), t.g
 
 const calendarIcon = `<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="8.5" cy="14" r="1.1" fill="currentColor"/><circle cx="12" cy="14" r="1.1" fill="currentColor"/><circle cx="15.5" cy="14" r="1.1" fill="currentColor"/></svg>`;
 
-export function initDatePicker(form: HTMLFormElement, inInput: HTMLInputElement, outInput: HTMLInputElement, locale: string, t: Labels) {
+export function initDatePicker(form: HTMLFormElement, inInput: HTMLInputElement, outInput: HTMLInputElement, locale: string, t: Labels, opts: { up?: boolean; onChange?: (checkIn: string, checkOut: string) => void } = {}) {
   const today = todayIso();
   const fmtField = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
   const fmtMonth = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric", timeZone: "UTC" });
@@ -46,7 +46,7 @@ export function initDatePicker(form: HTMLFormElement, inInput: HTMLInputElement,
   const outBtn = makeButton(outInput, "out");
 
   const pop = document.createElement("div");
-  pop.className = "cal";
+  pop.className = opts.up ? "cal cal-up" : "cal";
   pop.setAttribute("role", "dialog");
   pop.hidden = true;
   pop.innerHTML = `<div class="cal-nav"><button type="button" class="cal-arrow" data-prev aria-label="${t.prev}">‹</button><b class="cal-title"></b><button type="button" class="cal-arrow" data-next aria-label="${t.next}">›</button></div><div class="cal-months"></div><p class="cal-foot"><span class="cal-nights"></span><button type="button" class="cal-close">${t.close}</button></p>`;
@@ -65,6 +65,7 @@ export function initDatePicker(form: HTMLFormElement, inInput: HTMLInputElement,
     outBtn.setAttribute("aria-label", `${t.checkOut}: ${fmtLong.format(parse(checkOut))}`);
     const n = nightsBetween(checkIn, checkOut);
     nights.textContent = (n === 1 ? t.night : t.nights).replace("{n}", String(n));
+    opts.onChange?.(checkIn, checkOut);
   };
 
   const monthsShown = () => (matchMedia("(min-width: 700px)").matches ? 2 : 1);
