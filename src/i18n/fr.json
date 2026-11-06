@@ -1,42 +1,115 @@
 {
   "meta": {
-    "title": "Hotel Corali Paros | Hôtel en bord de mer à Piso Livadi",
-    "description": "Hotel Corali à Piso Livadi, Paros : chambres et appartements avec balcon au-dessus du petit port, à 200 m de la plage et 300 m de Logaras. Réservez en direct au meilleur prix."
+    "title": "Hotel Corali Paros | Hôtel vue mer à Piso Livadi",
+    "description": "Hotel Corali à Piso Livadi, Paros : chambres doubles et twin et un appartement de 70 m², tous avec balcon et vue mer. Hôtel familial, 279 avis clients. Réservez en direct."
   },
-  "a11y": { "skip": "Aller au contenu", "home": "Hotel Corali — accueil" },
-  "nav": { "rooms": "Chambres", "beaches": "Plages", "village": "Piso Livadi", "contact": "Contact", "book": "Réserver", "menu": "Menu", "close": "Fermer", "language": "Langue" },
+  "a11y": {
+    "skip": "Aller au contenu",
+    "home": "Hotel Corali — accueil"
+  },
+  "nav": {
+    "rooms": "Chambres",
+    "beaches": "Plages",
+    "village": "Piso Livadi",
+    "contact": "Contact",
+    "book": "Réserver",
+    "menu": "Menu",
+    "close": "Fermer",
+    "language": "Langue"
+  },
   "hero": {
     "eyebrow": "Piso Livadi · Paros · Cyclades",
     "titleTop": "Votre balcon",
     "titleBottom": "sur la mer Égée",
-    "lead": "Un hôtel familial au-dessus du petit port de Piso Livadi. Réveil face aux bateaux de pêche, la mer à quelques pas.",
+    "lead": "Un hôtel familial au-dessus de la baie de Piso Livadi. Chaque chambre a un balcon et la vue sur la mer — avec Naxos juste en face.",
     "cta": "Voir les disponibilités",
     "secondary": "Les chambres",
     "scroll": "Défiler",
-    "photoAlt": "Vue depuis un balcon de l'Hotel Corali sur le port de Piso Livadi et Naxos"
+    "photoAlt": "Vue à travers une arche cycladique sur le port de Piso Livadi et Naxos"
   },
-  "booking": { "title": "Réservation directe", "checkIn": "Arrivée", "checkOut": "Départ", "submit": "Rechercher", "perk": "Meilleur prix en réservant directement" },
-  "marquee": ["Piso Livadi", "Logaras 300 m", "Couchers de soleil sur le port", "Paros", "Vue sur Naxos", "Tavernes de poissons", "Été cycladique"],
+  "booking": {
+    "title": "Réservation directe",
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "submit": "Rechercher",
+    "perk": "Meilleur prix en réservant directement"
+  },
+  "marquee": [
+    "Piso Livadi",
+    "Logaras 300 m",
+    "Couchers de soleil sur le port",
+    "Paros",
+    "Vue sur Naxos",
+    "Tavernes de poissons",
+    "Été cycladique"
+  ],
   "intro": {
     "kicker": "Corali",
     "title": "Blanc, bleu et le bruit du port.",
-    "body": "Sur la côte est, plus paisible, de Paros, le Corali surplombe le petit port de Piso Livadi face à Naxos. Arches cycladiques, lumière partout et des hôtes qui connaissent chaque recoin de l'île.",
+    "body": "Sur la côte est, plus paisible, de Paros, le Corali surplombe la baie de Piso Livadi face à Naxos. Traversez la route pour vous baigner à la petite plage devant l'hôtel, ou marchez 300 mètres jusqu'à Logaras. La même famille vous accueille — et connaît l'île par cœur.",
     "stats": [
-      { "value": 200, "suffix": " m", "label": "de la plage du village" },
-      { "value": 300, "suffix": " m", "label": "de la plage de sable de Logaras" },
-      { "value": 15, "suffix": "+", "label": "plages à 30 minutes" }
+      {
+        "value": 200,
+        "suffix": " m",
+        "label": "de la plage du village"
+      },
+      {
+        "value": 300,
+        "suffix": " m",
+        "label": "de la plage de sable de Logaras"
+      },
+      {
+        "value": 15,
+        "suffix": "+",
+        "label": "plages à 30 minutes"
+      }
     ]
   },
   "rooms": {
     "kicker": "Séjour",
-    "title": "Des chambres pleines de lumière et de mer",
-    "lead": "Simples, impeccables, cycladiques. Une chambre pour deux ou un appartement pour la famille et les amis.",
-    "items": [
-      { "name": "Chambres doubles", "text": "Mur en pierre, lumière chaleureuse et porte-fenêtre ouverte sur le soleil du matin.", "tags": ["Balcon", "Pour 2 personnes", "Cadre calme"], "alt": "Chambre double de l'Hotel Corali avec mur en pierre et porte-fenêtre" },
-      { "name": "Appartements", "text": "Salon avec cheminée cycladique, coin repas et balcon — de la place pour toute la famille.", "tags": ["Salon & cuisine", "Familles", "Climatisation"], "alt": "Salon blanc d'appartement avec cheminée cycladique et table à manger" },
-      { "name": "La vue", "text": "Café du matin ou vin frais au crépuscule, avec le port et Naxos devant vous.", "tags": ["Vue sur le port", "Vue sur Naxos", "Ensoleillé"], "alt": "Table avec fruits et vin sur un balcon donnant sur le port" }
-    ],
-    "cta": "Tarifs & disponibilités"
+    "title": "Cinq façons de voir la mer Égée",
+    "lead": "Toutes les chambres ont balcon, vue mer, climatisation et ménage quotidien.",
+    "items": {
+      "deluxeDouble": {
+        "name": "Chambre Double Deluxe",
+        "bed": "Lit double",
+        "text": "Au deuxième étage avec une vue superbe. Le balcon privé est votre refuge pour le café du matin au lever du soleil.",
+        "alt": "Chambre double deluxe avec lit double et porte-fenêtre sur la mer"
+      },
+      "deluxeTwin": {
+        "name": "Chambre Twin Deluxe",
+        "bed": "2 lits simples",
+        "text": "Au deuxième étage, de grandes baies sur la mer et un balcon privé ensoleillé.",
+        "alt": "Chambre twin deluxe avec deux lits simples et vue mer"
+      },
+      "double": {
+        "name": "Chambre Double",
+        "bed": "Lit double",
+        "text": "Au premier étage. Un lit double confortable et un balcon avec brise marine et vue panoramique sur la baie de Piso Livadi.",
+        "alt": "Chambre double avec lit double, mur en pierre et porte-fenêtre"
+      },
+      "twin": {
+        "name": "Chambre Twin",
+        "bed": "2 lits simples",
+        "text": "Au premier étage. Deux lits simples et un balcon pour profiter de la baie de Piso Livadi et de la mer Égée.",
+        "alt": "Chambre twin avec deux lits simples et mur en pierre"
+      },
+      "penthouse": {
+        "name": "Appartement Penthouse",
+        "bed": "Cuisine & lave-linge",
+        "text": "70 m² au deuxième étage : deux chambres, un séjour ouvert baigné de lumière et une terrasse avec pergola au-dessus du port.",
+        "alt": "Terrasse de l'appartement penthouse avec pergola et vue sur le port"
+      }
+    },
+    "cta": "Tarifs & disponibilités",
+    "from": "dès",
+    "night": "/ nuit",
+    "note": "Prix « à partir de », basse saison. Le prix final s'affiche lors de la réservation.",
+    "floor1": "1er étage",
+    "floor2": "2e étage",
+    "guests": "Pour 2 personnes",
+    "bedrooms": "2 chambres · 70 m²",
+    "book": "Réserver"
   },
   "beaches": {
     "kicker": "Guide du meltem",
@@ -57,21 +130,101 @@
     "source": "Météo : Open-Meteo. Distances en voiture depuis l'hôtel.",
     "calm": "Calme plat — toutes les plages sont superbes aujourd'hui !"
   },
-  "winds": { "N": "Nord", "NE": "Nord-est", "E": "Est", "SE": "Sud-est", "S": "Sud", "SW": "Sud-ouest", "W": "Ouest", "NW": "Nord-ouest" },
+  "winds": {
+    "N": "Nord",
+    "NE": "Nord-est",
+    "E": "Est",
+    "SE": "Sud-est",
+    "S": "Sud",
+    "SW": "Sud-ouest",
+    "W": "Ouest",
+    "NW": "Nord-ouest"
+  },
   "village": {
     "kicker": "Le village",
     "title": "Piso Livadi, le visage authentique de Paros",
-    "body": "Un village de pêcheurs avec sa marina, des tavernes au bord de l'eau et des cafés qui ouvrent tôt. Loin de l'agitation, près de tout.",
+    "body": "Restaurants et tavernes pittoresques sur le front de mer avec poisson frais et vin local, cafés-bars au bord de l'eau et tout autour les plus belles plages : Logaras, Pounta, New Golden Beach, Golden Beach, Molos.",
     "items": [
-      { "title": "Logaras", "text": "Plage de sable aux eaux peu profondes, idéale pour les enfants — 300 mètres." },
-      { "title": "Lefkes & Marpissa", "text": "Villages traditionnels des collines pour une balade l'après-midi." },
-      { "title": "Naoussa", "text": "Le port cosmopolite de l'île, à environ 14 km." },
-      { "title": "Parikia", "text": "Le port principal et l'église Ekatontapyliani, à environ 16 km." }
-    ]
+      {
+        "title": "18 km du port",
+        "text": "Depuis Parikia en bus, taxi ou voiture, sur route goudronnée."
+      },
+      {
+        "title": "17 km de l'aéroport",
+        "text": "Nous pouvons organiser votre transfert."
+      },
+      {
+        "title": "Ferry pour Naxos",
+        "text": "Liaison quotidienne avec Naxos depuis le petit port du village."
+      },
+      {
+        "title": "Excursions",
+        "text": "Chaque jour vers Mykonos, Naxos, Iraklia, Koufonissia, Amorgos et Santorin."
+      }
+    ],
+    "webcam": "En direct de notre balcon"
   },
-  "cta": { "title": "Votre été commence ici.", "text": "Réservez directement auprès du Corali pour le meilleur tarif disponible et un contact direct avec nous.", "button": "Réserver maintenant" },
-  "contact": { "title": "Contact", "address": "Adresse", "email": "E-mail", "phone": "Téléphone", "directions": "Itinéraire sur la carte" },
-  "footer": { "rights": "Tous droits réservés.", "auto": "Cette page a été traduite automatiquement." },
-  "suggest": { "text": "Cette page est disponible en français.", "go": "Changer", "dismiss": "Non, merci" },
-  "notFound": { "title": "Page introuvable", "text": "Elle est sans doute partie se baigner. Retour à l'accueil.", "home": "Accueil" }
+  "cta": {
+    "title": "Votre été commence ici.",
+    "text": "Réservez directement auprès du Corali pour le meilleur tarif disponible et un contact direct avec nous.",
+    "button": "Réserver maintenant"
+  },
+  "contact": {
+    "title": "Contact",
+    "address": "Adresse",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "directions": "Itinéraire sur la carte",
+    "follow": "Suivez-nous"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "auto": "Cette page a été traduite automatiquement."
+  },
+  "suggest": {
+    "text": "Cette page est disponible en français.",
+    "go": "Changer",
+    "dismiss": "Non, merci"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Elle est sans doute partie se baigner. Retour à l'accueil.",
+    "home": "Accueil"
+  },
+  "amenities": {
+    "ac": "Climatisation",
+    "tv": "Télévision",
+    "fridge": "Réfrigérateur",
+    "balcony": "Balcon",
+    "seaView": "Vue mer",
+    "hairdryer": "Sèche-cheveux",
+    "wifi": "Wi-Fi",
+    "soundproof": "Fenêtres insonorisées",
+    "cleaning": "Ménage quotidien",
+    "kitchen": "Cuisine équipée",
+    "coffee": "Cafetière",
+    "oven": "Four",
+    "washer": "Lave-linge"
+  },
+  "reviews": {
+    "kicker": "Nos hôtes",
+    "title": "279 avis. Un mot : la vue.",
+    "badge": "Note excellente",
+    "lead": "Leurs mots, dans leur langue."
+  },
+  "gallery": {
+    "kicker": "Moments",
+    "title": "Une journée au Corali",
+    "alts": [
+      "Balcon sur la baie de Piso Livadi",
+      "Bateaux de pêche dans le port de Piso Livadi",
+      "La baie de Piso Livadi entre les pins",
+      "Terrasse avec pergola et vue mer",
+      "Le village et le port de Piso Livadi",
+      "La plage de sable de Logaras",
+      "Piso Livadi vu du ciel",
+      "Porte-fenêtre ouverte sur la mer",
+      "Le port illuminé la nuit, vu du balcon"
+    ]
+  }
 }

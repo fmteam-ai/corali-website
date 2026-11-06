@@ -6,15 +6,26 @@ import Sun from "./Sun.astro";
 import { t, localeOf, locales, homePath, type Lang } from "../i18n";
 import { hotel, bookUrl, mapsUrl } from "../data/hotel";
 import { beaches, winds, windDeg } from "../data/beaches";
-import harbour from "../assets/corali-harbour.jpg";
-import room from "../assets/corali-room.jpg";
-import apartment from "../assets/corali-apartment.jpg";
+import { rooms } from "../data/rooms";
+import { reviews } from "../data/reviews";
+import heroImg from "../assets/hero-arch-view.jpg";
+import villageImg from "../assets/village-night.jpg";
+import g1 from "../assets/gallery/balcony-bay.jpg";
+import g2 from "../assets/gallery/harbour-boats.jpg";
+import g3 from "../assets/gallery/bay-pines.jpg";
+import g4 from "../assets/gallery/penthouse-terrace.jpg";
+import g5 from "../assets/gallery/village-harbour.jpg";
+import g6 from "../assets/gallery/logaras.jpg";
+import g7 from "../assets/gallery/aerial.webp";
+import g8 from "../assets/gallery/room-door-sea.jpg";
+import g9 from "../assets/gallery/night-balcony.jpg";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const d = t(lang);
 const auto = localeOf(lang).auto;
-const roomImgs = [room, apartment, harbour];
+const gallery = [g1, g2, g3, g4, g5, g6, g7, g8, g9];
+const eur = (n: number) => new Intl.NumberFormat(localeOf(lang).hreflang, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
 const beachName = (b: (typeof beaches)[number]) => (lang === "el" ? b.el : b.latin);
 const year = new Date().getFullYear();
 const elShort: Record<string, string> = { N: "Β", NE: "ΒΑ", E: "Α", SE: "ΝΑ", S: "Ν", SW: "ΝΔ", W: "Δ", NW: "ΒΔ" };
@@ -43,7 +54,7 @@ const clientData = {
         </div>
         <div class="hero-slot" aria-hidden="true" data-hero-slot></div>
         <div class="hero-arch" data-hero-arch>
-          <Picture src={harbour} formats={["avif", "webp"]} widths={[480, 768, 1024]} sizes="100vw" alt={d.hero.photoAlt} loading="eager" fetchpriority="high" class="hero-img" data-hero-img />
+          <Picture src={heroImg} formats={["avif", "webp"]} widths={[480, 768, 1080, 1600, 1920]} sizes="100vw" alt={d.hero.photoAlt} loading="eager" fetchpriority="high" class="hero-img" data-hero-img />
         </div>
         <div class="hero-bottom" data-hero-fade>
           <p class="hero-lead">{d.hero.lead}</p>
@@ -94,22 +105,50 @@ const clientData = {
         <p class="lead" data-reveal>{d.rooms.lead}</p>
       </div>
       <div class="rooms-track" data-rooms-track>
-        {d.rooms.items.map((r, i) => (
-          <article class="room-card">
-            <div class="room-media">
-              <Picture src={roomImgs[i]} formats={["avif", "webp"]} widths={[400, 700, 1024]} sizes="(min-width: 900px) 40vw, 85vw" alt={r.alt} loading="lazy" />
-              <span class="room-num">0{i + 1}</span>
-            </div>
-            <h3>{r.name}</h3>
-            <p>{r.text}</p>
-            <ul class="tags">{r.tags.map((tag) => <li>{tag}</li>)}</ul>
-          </article>
-        ))}
+        {rooms.map((r, i) => {
+          const it = d.rooms.items[r.id];
+          return (
+            <article class="room-card" id={`room-${r.id}`}>
+              <div class="room-media">
+                <Picture src={r.img} formats={["avif", "webp"]} widths={[400, 700, 1000]} sizes="(min-width: 900px) 34vw, 85vw" alt={it.alt} loading="lazy" />
+                <span class="room-num">0{i + 1}</span>
+                <span class="room-price"><small>{d.rooms.from}</small> {eur(r.from)}<small>{d.rooms.night}</small></span>
+              </div>
+              <h3>{it.name}<span class="room-bed">{it.bed}</span></h3>
+              <p>{it.text}</p>
+              <ul class="tags">
+                <li>{r.floor === 2 ? d.rooms.floor2 : d.rooms.floor1}</li>
+                <li>{r.id === "penthouse" ? d.rooms.bedrooms : d.rooms.guests}</li>
+                {r.amenities.slice(0, 4).map((a) => <li>{d.amenities[a]}</li>)}
+              </ul>
+              <details class="amenities">
+                <summary>+ {r.amenities.length - 4}</summary>
+                <ul>{r.amenities.slice(4).map((a) => <li>{d.amenities[a]}</li>)}</ul>
+              </details>
+              <a class="room-book" href={bookUrl(lang, `room-${r.id}`)} rel="noopener" data-book>{d.rooms.book} <span aria-hidden="true">→</span></a>
+            </article>
+          );
+        })}
         <a class="room-card room-cta" href={bookUrl(lang, "rooms")} rel="noopener" data-book>
           <Sun class="room-cta-sun" />
           <span>{d.rooms.cta}</span><span class="arrow" aria-hidden="true">→</span>
         </a>
       </div>
+      <p class="container fineprint rooms-note">* {d.rooms.note}</p>
+    </section>
+
+    <section class="reviews container" aria-labelledby="reviews-title">
+      <div class="reviews-head">
+        <p class="kicker" data-reveal>{d.reviews.kicker}</p>
+        <h2 id="reviews-title" class="h2" data-reveal>{d.reviews.title}</h2>
+        <p class="badge" data-reveal><span class="stars" aria-hidden="true">★★★★★</span> {d.reviews.badge} · {hotel.reviewsCount}</p>
+        <p class="lead" data-reveal>{d.reviews.lead}</p>
+      </div>
+      <ul class="review-list">
+        {reviews.map((r) => (
+          <li data-reveal><blockquote lang={r.lang}><p>“{r.text}”</p></blockquote><cite>{r.name} <span>{r.lang.toUpperCase()}</span></cite></li>
+        ))}
+      </ul>
     </section>
 
     <section id="beaches" class="beaches" aria-labelledby="beaches-title" data-beaches>
@@ -153,9 +192,25 @@ const clientData = {
       </div>
     </section>
 
+    <section class="gallery" aria-labelledby="gallery-title" data-gallery>
+      <div class="container">
+        <p class="kicker" data-reveal>{d.gallery.kicker}</p>
+        <h2 id="gallery-title" class="h2" data-reveal>{d.gallery.title}</h2>
+      </div>
+      <div class="gallery-grid">
+        {[0, 1, 2].map((c) => (
+          <div class="gallery-col" data-gallery-col={c}>
+            {gallery.filter((_, i) => i % 3 === c).map((img, j) => (
+              <figure><Picture src={img} formats={["avif", "webp"]} widths={[360, 640, 960]} sizes="(min-width: 760px) 32vw, 48vw" alt={d.gallery.alts[j * 3 + c]} loading="lazy" /></figure>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+
     <section id="village" class="village" aria-labelledby="village-title">
       <div class="village-media" data-parallax>
-        <Picture src={harbour} formats={["avif", "webp"]} widths={[480, 768, 1024]} sizes="100vw" alt="" loading="lazy" />
+        <Picture src={villageImg} formats={["avif", "webp"]} widths={[640, 1080, 1600, 1920]} sizes="100vw" alt="" loading="lazy" />
       </div>
       <div class="container village-inner">
         <p class="kicker" data-reveal>{d.village.kicker}</p>
@@ -164,6 +219,7 @@ const clientData = {
         <ul class="village-list">
           {d.village.items.map((v, i) => <li data-reveal><span class="n">0{i + 1}</span><h3>{v.title}</h3><p>{v.text}</p></li>)}
         </ul>
+        <a class="btn btn-ghost-light webcam" href={hotel.webcam} target="_blank" rel="noopener"><i class="pulse"></i>{d.village.webcam} ↗</a>
       </div>
     </section>
 
@@ -185,13 +241,19 @@ const clientData = {
         <address>
           <p><span class="label">{d.contact.address}</span>{lang === "el" ? hotel.addressEl : "Piso Livadi, Paros 844 00, Greece"}</p>
           <p><span class="label">{d.contact.email}</span><a href={`mailto:${hotel.email}`}>{hotel.email}</a></p>
-          {hotel.phone && <p><span class="label">{d.contact.phone}</span><a href={`tel:${hotel.phone}`}>{hotel.phone}</a></p>}
+          {hotel.phone && <p><span class="label">{d.contact.phone}</span><a href={`tel:${hotel.phone}`}>{hotel.phoneDisplay}</a></p>}
         </address>
         <a class="btn btn-ghost-light btn-sm" href={mapsUrl} target="_blank" rel="noopener">{d.contact.directions} ↗</a>
       </div>
+      <div class="footer-side">
+      <nav aria-label={d.contact.follow} class="footer-social">
+        <span class="label">{d.contact.follow}</span>
+        {hotel.social.map((x) => <a href={x.url} target="_blank" rel="noopener me">{x.name}</a>)}
+      </nav>
       <nav aria-label={d.nav.language} class="footer-langs">
         {locales.map((l) => <a href={homePath(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.label}</a>)}
       </nav>
+      </div>
     </div>
     <div class="container footer-bottom">
       <p>© {year} Hotel Corali · Piso Livadi, Paros. {d.footer.rights}</p>

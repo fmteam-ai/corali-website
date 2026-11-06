@@ -30,7 +30,7 @@ The date form passes `checkIn` / `checkOut` straight to the booking engine. Chan
 ## SEO
 Per-language `<title>`/description, canonical, hreflang (+ x-default → English), Open Graph/Twitter, schema.org `Hotel` JSON-LD (address, geo, ReserveAction), sitemap with alternates, robots.txt, semantic headings, preloaded AVIF hero (LCP), self-hosted fonts.
 
-## Before going live (TODO)
-- `src/data/hotel.ts`: add the official **phone** and **social links** (Instagram/Facebook → also schema `sameAs`).
-- Check the room texts/tags in `src/i18n/el.json` & `en.json` and the beach list in `src/data/beaches.ts`.
-- More/better photos: drop them in `src/assets/` — they are optimised at build time.
+## Content source
+Hotel facts, rooms (amenities, floor, "from" prices), photos, reviews and location info come from the current
+www.hotelcorali.gr (November 2026): `src/data/hotel.ts`, `src/data/rooms.ts`, `src/data/reviews.ts`, `src/assets/`.
+Update the "from" prices in `src/data/rooms.ts` when the price list changes.

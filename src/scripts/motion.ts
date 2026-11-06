@@ -157,6 +157,16 @@ export function initMotion() {
       addEventListener("corali:beaches", onBeaches);
       gsap.from(".compass-dial", { rotation: -90, autoAlpha: 0, scale: 0.8, duration: 1.4, ease: "power3.out", scrollTrigger: { trigger: ".compass-dial", start: "top 85%", once: true } });
 
+      /* ── Gallery: columns drift at different speeds ── */
+      if (desktop) {
+        [-60, 40, -90].forEach((dist, i) => {
+          gsap.fromTo(`[data-gallery-col="${i}"]`, { y: 0 }, { y: dist, ease: "none", scrollTrigger: { trigger: "[data-gallery]", start: "top bottom", end: "bottom top", scrub: true } });
+        });
+      }
+      gsap.utils.toArray<HTMLElement>(".gallery figure").forEach((fig) => {
+        gsap.from(fig, { scale: 0.92, autoAlpha: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: fig, start: "top 92%", once: true } });
+      });
+
       /* ── Village photo parallax ── */
       gsap.fromTo("[data-parallax]", { yPercent: -8 }, { yPercent: 8, ease: "none", scrollTrigger: { trigger: "#village", start: "top bottom", end: "bottom top", scrub: true } });
       gsap.from(".village-list li", { y: 60, autoAlpha: 0, stagger: 0.1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".village-list", start: "top 85%", once: true } });

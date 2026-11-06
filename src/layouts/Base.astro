@@ -6,9 +6,9 @@ import "../styles/global.css";
 import { getImage } from "astro:assets";
 import { locales, localeOf, homePath, t, type Lang } from "../i18n";
 import { hotel } from "../data/hotel";
-import heroImg from "../assets/corali-harbour.jpg";
-import roomImg from "../assets/corali-room.jpg";
-import aptImg from "../assets/corali-apartment.jpg";
+import heroImg from "../assets/hero-arch-view.jpg";
+import roomImg from "../assets/rooms/deluxe-double.jpg";
+import aptImg from "../assets/rooms/penthouse.jpg";
 
 interface Props { lang: Lang; title?: string; description?: string; path?: (code: Lang) => string; noindex?: boolean }
 const { lang, noindex = false, path = homePath } = Astro.props;
@@ -17,9 +17,9 @@ const title = Astro.props.title ?? d.meta.title;
 const description = Astro.props.description ?? d.meta.description;
 const site = Astro.site!;
 const canonical = new URL(path(lang), site).href;
-const og = await getImage({ src: heroImg, width: 1024, format: "jpg" });
+const og = await getImage({ src: heroImg, width: 1200, height: 900, format: "jpg" });
 const ogUrl = new URL(og.src, site).href;
-const hero = await getImage({ src: heroImg, widths: [480, 768, 1024], format: "avif" });
+const hero = await getImage({ src: heroImg, widths: [480, 768, 1080, 1600, 1920], format: "avif" });
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -30,12 +30,15 @@ const jsonLd = {
   description,
   image: [ogUrl, new URL((await getImage({ src: roomImg, format: "jpg" })).src, site).href, new URL((await getImage({ src: aptImg, format: "jpg" })).src, site).href],
   email: hotel.email,
-  ...(hotel.phone ? { telephone: hotel.phone } : {}),
+  telephone: hotel.phone,
+  alternateName: "Ξενοδοχείο Κοράλι",
   address: { "@type": "PostalAddress", streetAddress: hotel.address.street, addressLocality: hotel.address.locality, postalCode: hotel.address.postalCode, addressRegion: hotel.address.region, addressCountry: hotel.address.country },
   geo: { "@type": "GeoCoordinates", latitude: hotel.geo.lat, longitude: hotel.geo.lon },
   hasMap: `https://www.google.com/maps/search/?api=1&query=${hotel.geo.lat},${hotel.geo.lon}`,
   availableLanguage: ["el", "en"],
-  ...(hotel.social.length ? { sameAs: hotel.social } : {}),
+  sameAs: hotel.social.map((x) => x.url),
+  priceRange: "€80–€180",
+  amenityFeature: ["Sea view", "Balcony", "Air conditioning", "Free Wi-Fi", "Daily housekeeping", "Soundproof windows"].map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
   potentialAction: { "@type": "ReserveAction", target: { "@type": "EntryPoint", urlTemplate: `${hotel.bookingBase}?lang=${lang}&utm_source=website`, inLanguage: lang } },
 };
 ---
@@ -61,8 +64,8 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogUrl} />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="768" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="900" />
     <meta property="og:locale" content={localeOf(lang).ogLocale} />
     {locales.filter((l) => l.code !== lang).map((l) => <meta property="og:locale:alternate" content={l.ogLocale} />)}
     <meta name="twitter:card" content="summary_large_image" />
