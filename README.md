@@ -11,7 +11,7 @@ npm run build     # → dist/ (upload anywhere: cPanel, Netlify, Cloudflare Page
 ```
 
 ## Languages
-- `src/i18n/el.json` (default, `/`) and `en.json` (`/en/`) are written by hand.
+- `src/i18n/en.json` (default, `/`) and `el.json` (`/el/`) are written by hand — same URL layout as the old WordPress site.
 - `de`, `fr`, `it` are auto-translated from English (`auto: true` in `src/i18n/locales.mjs`; the page says so in the footer).
 - New language: add it to `src/i18n/locales.mjs`, then `DEEPL_API_KEY=… npm run translate -- es` → creates `src/i18n/es.json`, a page at `/es/`, hreflang and a sitemap entry.
 - Re-running `npm run translate` only re-translates strings whose English text changed, so hand fixes survive.

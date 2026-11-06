@@ -74,6 +74,8 @@ const clientData = {
         <p class="qb-title"><Sun class="qb-sun" /> {d.booking.title}<small>{d.booking.perk}</small></p>
         <label>{d.booking.checkIn}<input type="date" name="checkIn" required data-in /></label>
         <label>{d.booking.checkOut}<input type="date" name="checkOut" required data-out /></label>
+        <label class="qb-small">{d.booking.adults}<select name="adults">{[1, 2, 3, 4, 5, 6].map((n) => <option selected={n === 2}>{n}</option>)}</select></label>
+        <label class="qb-small">{d.booking.children}<select name="children">{[0, 1, 2, 3, 4].map((n) => <option>{n}</option>)}</select></label>
         <input type="hidden" name="utm_source" value="website" />
         <input type="hidden" name="utm_medium" value="referral" />
         <input type="hidden" name="utm_content" value="dates" />

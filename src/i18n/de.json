@@ -32,7 +32,10 @@
     "checkIn": "Anreise",
     "checkOut": "Abreise",
     "submit": "Suchen",
-    "perk": "Bester Preis bei Direktbuchung"
+    "perk": "Bester Preis bei Direktbuchung",
+    "adults": "Erwachsene",
+    "children": "Kinder",
+    "rooms": "Zimmer"
   },
   "marquee": [
     "Piso Livadi",

@@ -32,7 +32,10 @@
     "checkIn": "Arrivée",
     "checkOut": "Départ",
     "submit": "Rechercher",
-    "perk": "Meilleur prix en réservant directement"
+    "perk": "Meilleur prix en réservant directement",
+    "adults": "Adultes",
+    "children": "Enfants",
+    "rooms": "Chambres"
   },
   "marquee": [
     "Piso Livadi",
