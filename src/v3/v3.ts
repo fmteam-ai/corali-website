@@ -28,8 +28,9 @@ let lastY = scrollY;
 const onScroll = () => {
   const y = scrollY;
   hd.classList.toggle("is-solid", y > innerHeight * 0.6);
-  hd.classList.toggle("is-up", y > innerHeight && y > lastY + 4);
-  if (y < lastY - 4) hd.classList.remove("is-up");
+  // Hide only on a clear scroll down, show again on a clear scroll up (tiny smooth-scroll steps change nothing).
+  if (y > innerHeight && y > lastY + 4) hd.classList.add("is-up");
+  else if (y < lastY - 4 || y < innerHeight) hd.classList.remove("is-up");
   lastY = y;
 };
 addEventListener("scroll", onScroll, { passive: true });

@@ -31,7 +31,7 @@ export function init() {
       .from("[data-hero-line]", { yPercent: 110, duration: 1.5, stagger: 0.12 })
       .from("[data-hero-fade]", { opacity: 0, y: 16, duration: 1.1, stagger: 0.1 }, 0.4)
       .from("[data-pill]", { y: 40, opacity: 0, duration: 1.2 }, 0.55)
-      .from(".hd", { y: -30, opacity: 0, duration: 1 }, 0.3);
+      .from(".hd", { autoAlpha: 0, duration: 1, clearProps: "opacity,visibility" }, 0.3); // fade only: CSS owns its position
     if (root.classList.contains("intro")) {
       const sun = document.querySelectorAll<SVGGeometryElement>(".curtain-sun circle, .curtain-sun line, .curtain-sun path");
       sun.forEach((s) => { const l = s.getTotalLength(); s.style.strokeDasharray = `${l}`; s.style.strokeDashoffset = `${l}`; });

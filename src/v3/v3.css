@@ -42,9 +42,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .curtain-word { font: italic 400 2.2rem var(--serif); letter-spacing: 0.08em; }
 
 /* ───── Header ───── */
-.hd { position: fixed; z-index: 60; inset: 0 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px var(--g); color: #fff; transition: background-color 0.5s, color 0.5s, padding 0.5s, transform 0.6s var(--ease); }
+.hd { position: fixed; z-index: 60; inset: 0 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px var(--g); color: #fff; transition: background-color 0.5s, color 0.5s, padding 0.5s, translate 0.6s var(--ease); }
 .hd.is-solid { background: rgb(244 238 228 / 0.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--ink); padding-block: 10px; box-shadow: 0 1px 0 var(--line); }
-.hd.is-up { transform: translateY(-100%); }
+.hd.is-up { translate: 0 -100%; }
 .hd-menu { justify-self: start; display: inline-flex; align-items: center; gap: 12px; font: 400 0.68rem var(--sans); letter-spacing: 0.28em; text-transform: uppercase; }
 .hd-menu i { display: block; width: 22px; height: 1px; background: currentColor; }
 .hd-menu i + i { margin-left: -34px; transform: translateY(6px); width: 14px; }
