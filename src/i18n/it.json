@@ -370,6 +370,39 @@
     },
     "footer": {
       "note": "Un hotel di famiglia a Piso Livadi, Paros."
-    }
+    },
+    "chapters": [
+      "Arrivo",
+      "Camere",
+      "Una giornata",
+      "Chiedi",
+      "Dove siamo"
+    ],
+    "index": "Indice",
+    "console": "Live · Piso Livadi",
+    "bookStay": "Prenota un soggiorno",
+    "step1": "Date & ospiti",
+    "step2": "Camere & prezzi in tempo reale",
+    "show": "Vedi prezzi",
+    "back": "Cambia date",
+    "view": "Vedi",
+    "open": "Apri",
+    "close": "Chiudi",
+    "no": "N.",
+    "room": "Camera",
+    "bed": "Letti",
+    "floor": "Piano",
+    "price": "Da",
+    "statement": "Cinque modi per svegliarsi sopra l'Egeo. Una famiglia. Un porto. Di fronte, Naxos.",
+    "swipe": "Scorri",
+    "checkRoom": "Vedi prezzo live",
+    "amenities": "In camera",
+    "quote": "Ospite",
+    "coords": "Coordinate",
+    "dist": "Distanze",
+    "port": "Porto",
+    "airport": "Aeroporto",
+    "beach": "Spiaggia",
+    "story": "Story"
   }
 }

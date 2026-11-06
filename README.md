@@ -35,12 +35,13 @@ Hotel facts, rooms (amenities, floor, "from" prices), photos, reviews and locati
 www.hotelcorali.gr (November 2026): `src/data/hotel.ts`, `src/data/rooms.ts`, `src/data/reviews.ts`, `src/assets/`.
 Update the "from" prices in `src/data/rooms.ts` when the price list changes.
 
-## Version 2 (alternative design) — `/v2/`
-`src/v2/` + `src/pages/v2/`: booking-first "quiet luxury" design with the same data, photos and languages.
-- **Live prices on the page**: the date bar calls `booking.hotelcorali.gr/api/public/availability` (CORS allows
-  www.hotelcorali.gr) and lists the free rooms with Flexible / Non-refundable prices; each links to the booking page.
-- **Right now in Piso Livadi**: local time, sunset, sea temperature, wind and the calmest beach (Open-Meteo).
-- **Day / night theme**: automatic after the Paros sunset, or chosen by the visitor.
-- **Concierge**: opens the PMS assistant (`booking.hotelcorali.gr/assistant-widget.js`), loaded on first use.
-- Bento "book direct" perks, room filters (GSAP Flip), pinned "A day at Corali" story, reviews, app-style bar on phones.
-- `noindex` with canonical to the classic page, and left out of the sitemap, so it never competes with v1 in Google.
+## Version 2 (alternative design) — `/v2/` "Island Index"
+`src/v2/` + `src/pages/v2/`: a completely different, dark editorial / brutalist design (Roboto Flex condensed +
+JetBrains Mono, square corners, hairlines, one electric Aegean blue). Same data, photos and languages as v1.
+- Desktop: split screen — fixed left console (chapter index, live data, "Book a stay"), content on the right.
+- Phones: full-screen story panels with progress bars on top and a booking dock at the bottom.
+- Arrive: the photo lives inside the giant CORALI letters, then the camera flies through the "O" into the photo.
+- Rooms as an index list; the room photo follows the cursor; each room opens full screen (drawer).
+- Booking in two steps (dates & guests → live rooms & prices from `booking.hotelcorali.gr/api/public/availability`).
+- "A day" horizontal film strip (pinned on desktop, swipe on phones), terminal-style concierge (PMS assistant widget).
+- `noindex` + canonical to the classic page, excluded from the sitemap.
