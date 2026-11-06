@@ -35,6 +35,8 @@ const clientData = {
   winds: d.winds,
   b: { wind: d.beaches.wind, beaufort: d.beaches.beaufort, sea: d.beaches.sea, air: d.beaches.air, error: d.beaches.error, calm: d.beaches.calm },
   geo: hotel.geo,
+  locale: lang === "en" ? "en-GB" : localeOf(lang).hreflang,
+  cal: { checkIn: d.booking.checkIn, checkOut: d.booking.checkOut, prev: d.booking.prev, next: d.booking.next, close: d.booking.close, nights: d.booking.nights, night: d.booking.night },
   bookBase: bookUrl(lang, "dates"),
   alternates: Object.fromEntries(locales.map((l) => [l.code, { href: homePath(l.code), text: t(l.code).suggest }])),
 };

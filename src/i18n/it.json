@@ -35,7 +35,12 @@
     "perk": "Miglior prezzo prenotando direttamente",
     "adults": "Adulti",
     "children": "Bambini",
-    "rooms": "Camere"
+    "rooms": "Camere",
+    "prev": "Mese precedente",
+    "next": "Mese successivo",
+    "close": "Chiudi",
+    "nights": "{n} notti",
+    "night": "{n} notte"
   },
   "marquee": [
     "Piso Livadi",

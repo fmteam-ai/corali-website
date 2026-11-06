@@ -1,11 +1,15 @@
 // Everything here works with or without animation. Motion (GSAP + Lenis) is loaded on demand only when the device
 // does not ask for reduced motion — so those users download none of it.
+import { initDatePicker } from "./datepicker";
+
 type Wind = "N" | "NE" | "E" | "SE" | "S" | "SW" | "W" | "NW";
 type ClientData = {
   lang: string;
   winds: Record<Wind, string>;
   b: { wind: string; beaufort: string; sea: string; air: string; error: string; calm: string };
   geo: { lat: number; lon: number };
+  locale: string;
+  cal: { checkIn: string; checkOut: string; prev: string; next: string; close: string; nights: string; night: string };
   bookBase: string;
   alternates: Record<string, { href: string; text: { text: string; go: string; dismiss: string } }>;
 };
@@ -48,26 +52,9 @@ $$("a", menu).forEach((a) => a.addEventListener("click", () => setMenu(false)));
 const langMenu = $<HTMLDetailsElement>("[data-lang-menu]");
 document.addEventListener("click", (e) => { if (langMenu?.open && !langMenu.contains(e.target as Node)) langMenu.open = false; });
 
-/* Quick booking: sensible default dates, check-out always after check-in. */
-const iso = (d: Date) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-const addDays = (s: string, n: number) => { const d = new Date(`${s}T12:00:00`); d.setDate(d.getDate() + n); return iso(d); };
-const qIn = $<HTMLInputElement>("[data-in]"), qOut = $<HTMLInputElement>("[data-out]");
-if (qIn && qOut) {
-  const today = iso(new Date());
-  qIn.min = today;
-  qIn.value = addDays(today, 7);
-  qOut.value = addDays(qIn.value, 4);
-  // The booking engine accepts at most 60 nights per booking (PMS lib/public-rate.ts).
-  const MAX_NIGHTS = 60;
-  const limits = () => {
-    qOut.min = addDays(qIn.value, 1);
-    qOut.max = addDays(qIn.value, MAX_NIGHTS);
-    if (!qOut.value || qOut.value <= qIn.value || qOut.value > qOut.max) qOut.value = addDays(qIn.value, 3);
-  };
-  limits();
-  qIn.addEventListener("change", limits);
-  qOut.addEventListener("change", () => { if (qOut.value > qOut.max || qOut.value <= qIn.value) limits(); });
-}
+/* Quick booking: two-month calendar like the booking engine's (max 60 nights). */
+const qForm = $<HTMLFormElement>("[data-quickbook]"), qIn = $<HTMLInputElement>("[data-in]"), qOut = $<HTMLInputElement>("[data-out]");
+if (qForm && qIn && qOut) initDatePicker(qForm, qIn, qOut, data.locale, data.cal);
 
 /* Sticky "Book" bar on phones: hidden while another booking button is on screen. */
 const mobileBook = $("[data-mobile-book]");
