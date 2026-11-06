@@ -16,7 +16,7 @@ import g3 from "../assets/gallery/bay-pines.jpg";
 import g4 from "../assets/gallery/penthouse-terrace.jpg";
 import g5 from "../assets/gallery/village-harbour.jpg";
 import g6 from "../assets/gallery/logaras.jpg";
-import g7 from "../assets/gallery/aerial.webp";
+import g7 from "../assets/gallery/aerial.jpg";
 import g8 from "../assets/gallery/room-door-sea.jpg";
 import g9 from "../assets/gallery/night-balcony.jpg";
 
@@ -54,7 +54,7 @@ const clientData = {
         </div>
         <div class="hero-slot" aria-hidden="true" data-hero-slot></div>
         <div class="hero-arch" data-hero-arch>
-          <Picture src={heroImg} formats={["avif", "webp"]} widths={[480, 768, 1080, 1600, 1920]} sizes="100vw" alt={d.hero.photoAlt} loading="eager" fetchpriority="high" class="hero-img" data-hero-img />
+          <Picture fallbackFormat="jpg" src={heroImg} formats={["avif", "webp"]} widths={[480, 768, 1080, 1600, 1920]} sizes="100vw" alt={d.hero.photoAlt} loading="eager" fetchpriority="high" class="hero-img" data-hero-img />
         </div>
         <div class="hero-bottom" data-hero-fade>
           <p class="hero-lead">{d.hero.lead}</p>
@@ -110,7 +110,7 @@ const clientData = {
           return (
             <article class="room-card" id={`room-${r.id}`}>
               <div class="room-media">
-                <Picture src={r.img} formats={["avif", "webp"]} widths={[400, 700, 1000]} sizes="(min-width: 900px) 34vw, 85vw" alt={it.alt} loading="lazy" />
+                <Picture fallbackFormat="jpg" src={r.img} formats={["avif", "webp"]} widths={[400, 700, 1000]} sizes="(min-width: 900px) 34vw, 85vw" alt={it.alt} loading="lazy" />
                 <span class="room-num">0{i + 1}</span>
                 <span class="room-price"><small>{d.rooms.from}</small> {eur(r.from)}<small>{d.rooms.night}</small></span>
               </div>
@@ -201,7 +201,7 @@ const clientData = {
         {[0, 1, 2].map((c) => (
           <div class="gallery-col" data-gallery-col={c}>
             {gallery.filter((_, i) => i % 3 === c).map((img, j) => (
-              <figure><Picture src={img} formats={["avif", "webp"]} widths={[360, 640, 960]} sizes="(min-width: 760px) 32vw, 48vw" alt={d.gallery.alts[j * 3 + c]} loading="lazy" /></figure>
+              <figure><Picture fallbackFormat="jpg" src={img} formats={["avif", "webp"]} widths={[360, 640, 960]} sizes="(min-width: 760px) 32vw, 48vw" alt={d.gallery.alts[j * 3 + c]} loading="lazy" /></figure>
             ))}
           </div>
         ))}
@@ -210,7 +210,7 @@ const clientData = {
 
     <section id="village" class="village" aria-labelledby="village-title">
       <div class="village-media" data-parallax>
-        <Picture src={villageImg} formats={["avif", "webp"]} widths={[640, 1080, 1600, 1920]} sizes="100vw" alt="" loading="lazy" />
+        <Picture fallbackFormat="jpg" src={villageImg} formats={["avif", "webp"]} widths={[640, 1080, 1600, 1920]} sizes="100vw" alt="" loading="lazy" />
       </div>
       <div class="container village-inner">
         <p class="kicker" data-reveal>{d.village.kicker}</p>
@@ -268,7 +268,7 @@ const clientData = {
 
   <div class="suggest" role="dialog" aria-live="polite" hidden data-suggest>
     <p data-suggest-text></p>
-    <a class="btn btn-coral btn-sm" data-suggest-go href="/"></a>
+    <a class="btn btn-coral btn-sm" data-suggest-go href={homePath(lang)}></a>
     <button type="button" class="link" data-suggest-dismiss></button>
   </div>
 

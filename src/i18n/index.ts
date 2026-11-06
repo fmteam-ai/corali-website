@@ -22,5 +22,11 @@ export function t(lang: Lang): Dict {
 }
 
 export const localeOf = (code: Lang) => locales.find((l) => l.code === code)!;
-/** URL of the home page in a language: "/" for Greek, "/en/" etc. */
-export const homePath = (code: Lang) => (code === defaultLocale ? "/" : `/${code}/`);
+/** Site base ("/" live, "/new26/" for the staging copy), always with a trailing slash. */
+export const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+/** A staging build (in a sub-folder) must not be indexed next to the live site. */
+export const staging = base !== "/";
+/** URL of the home page in a language: "/" for Greek, "/en/" etc. (prefixed with the base). */
+export const homePath = (code: Lang) => (code === defaultLocale ? base : `${base}${code}/`);
+/** Path of a file in public/, with the base. */
+export const asset = (file: string) => `${base}${file}`;

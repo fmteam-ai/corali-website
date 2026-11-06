@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "translate": "node scripts/translate.mjs"
+    "translate": "node scripts/translate.mjs",
+    "build:new26": "BASE_PATH=/new26 astro build --outDir dist-new26 && cd dist-new26 && rm -f robots.txt && zip -qr ../corali-new26.zip ."
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

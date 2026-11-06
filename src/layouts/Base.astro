@@ -4,14 +4,15 @@ import "@fontsource-variable/noto-serif-display/wght.css";
 import "@fontsource-variable/noto-serif-display/wght-italic.css";
 import "../styles/global.css";
 import { getImage } from "astro:assets";
-import { locales, localeOf, homePath, t, type Lang } from "../i18n";
+import { locales, localeOf, homePath, asset, staging, t, type Lang } from "../i18n";
 import { hotel } from "../data/hotel";
 import heroImg from "../assets/hero-arch-view.jpg";
 import roomImg from "../assets/rooms/deluxe-double.jpg";
 import aptImg from "../assets/rooms/penthouse.jpg";
 
 interface Props { lang: Lang; title?: string; description?: string; path?: (code: Lang) => string; noindex?: boolean }
-const { lang, noindex = false, path = homePath } = Astro.props;
+const { lang, path = homePath } = Astro.props;
+const noindex = Astro.props.noindex || staging;
 const d = t(lang);
 const title = Astro.props.title ?? d.meta.title;
 const description = Astro.props.description ?? d.meta.description;
@@ -53,9 +54,9 @@ const jsonLd = {
     {!noindex && locales.map((l) => <link rel="alternate" hreflang={l.hreflang} href={new URL(path(l.code), site).href} />)}
     {!noindex && <link rel="alternate" hreflang="x-default" href={new URL(path("en"), site).href} />}
     <meta name="theme-color" content="#f7f3ec" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href={asset("favicon.svg")} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={asset("apple-touch-icon.png")} />
+    <link rel="manifest" href={asset("site.webmanifest")} />
     <link rel="preload" as="image" type="image/avif" imagesrcset={hero.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
 
     <meta property="og:type" content="website" />
