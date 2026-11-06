@@ -1,0 +1,280 @@
+---
+// Corali v3 — "Aegean Summerhouse": the language of luxury boutique hotels (hōm, Mykonos No5, Armenaki):
+// cinematic full-screen hero, minimal header + full-screen menu, floating booking pill, vertical "Book now",
+// colour-block mosaic, drag-to-scroll rooms, experiences collage, live prices. Same data/photos/languages as v1.
+import "@fontsource-variable/eb-garamond/wght.css";
+import "@fontsource-variable/eb-garamond/wght-italic.css";
+import "@fontsource-variable/commissioner/wght.css";
+import "./v3.css";
+import { Picture, Image, getImage } from "astro:assets";
+import { t, locales, localeOf, homePath, v3Path, asset, type Lang } from "../i18n";
+import { hotel, bookUrl, mapsUrl } from "../data/hotel";
+import { rooms } from "../data/rooms";
+import { reviews } from "../data/reviews";
+import { beaches } from "../data/beaches";
+import logo from "../assets/hotel-corali-logo.png";
+import h1 from "../assets/hero-arch-view.jpg";
+import h2 from "../assets/gallery/aerial.jpg";
+import h3 from "../assets/gallery/penthouse-terrace.jpg";
+import h4 from "../assets/village-night.jpg";
+import gBalcony from "../assets/gallery/balcony-bay.jpg";
+import gBoats from "../assets/gallery/harbour-boats.jpg";
+import gPines from "../assets/gallery/bay-pines.jpg";
+import gVillage from "../assets/gallery/village-harbour.jpg";
+import gLogaras from "../assets/gallery/logaras.jpg";
+import gDoor from "../assets/gallery/room-door-sea.jpg";
+import gNight from "../assets/gallery/night-balcony.jpg";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const v = d.v3;
+const loc = localeOf(lang);
+const intl = lang === "en" ? "en-GB" : loc.hreflang;
+const eur = (n: number) => new Intl.NumberFormat(intl, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
+const heroSlides = [h1, h2, h3, h4];
+const tileImgs = [gDoor, gVillage, gLogaras, gBoats];
+const expImgs = [gLogaras, gVillage, gPines, gBalcony];
+const gallery = [gBalcony, gBoats, gPines, h3, gVillage, gLogaras, h2, gDoor, gNight];
+const canonical = new URL(homePath(lang), Astro.site).href;
+const year = new Date().getFullYear();
+const og = await getImage({ src: h1, width: 1200, format: "jpg" });
+const heroPre = await getImage({ src: h1, widths: [640, 1080, 1600, 1920], format: "avif" });
+const roomImgs = Object.fromEntries(await Promise.all(rooms.map(async (r) => [r.id, (await getImage({ src: r.img, width: 900, format: "webp" })).src])));
+const menuImgs = await Promise.all([rooms[0].img, gLogaras, gBalcony, h4].map(async (src) => (await getImage({ src, width: 900, format: "webp" })).src));
+// "[word]" in the intro text is shown in the accent colour.
+const intro = v.intro.split(/(\[[^\]]+\])/).map((p) => (p.startsWith("[") ? { hi: true, s: p.slice(1, -1) } : { hi: false, s: p }));
+const links = [
+  { href: "#rooms", label: d.nav.rooms, img: menuImgs[0] },
+  { href: "#experience", label: v.expKicker, img: menuImgs[1] },
+  { href: "#gallery", label: v.galleryKicker, img: menuImgs[2] },
+  { href: "#find", label: v.findKicker, img: menuImgs[3] },
+];
+const client = {
+  lang, intl, geo: hotel.geo, book: hotel.bookingBase, winds: d.winds,
+  beaches: beaches.map((b) => ({ name: lang === "el" ? b.el : b.latin, km: b.km, sheltered: b.sheltered })),
+  cal: { checkIn: d.booking.checkIn, checkOut: d.booking.checkOut, prev: d.booking.prev, next: d.booking.next, close: d.booking.close, nights: d.booking.nights, night: d.booking.night },
+  r: d.v2.results, roomImgs,
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{v.title}</title>
+    <meta name="description" content={d.meta.description} />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#f4eee4" />
+    <link rel="icon" href={asset("favicon.svg")} type="image/svg+xml" />
+    <link rel="preload" as="image" type="image/avif" imagesrcset={heroPre.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
+    <meta property="og:title" content={v.title} />
+    <meta property="og:image" content={new URL(og.src, Astro.site).href} />
+    <script is:inline>
+      (function () {
+        var r = document.documentElement;
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) r.classList.add("motion");
+        try { if (!sessionStorage.getItem("corali-intro")) { r.classList.add("intro"); sessionStorage.setItem("corali-intro", "1"); } } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">{d.a11y.skip}</a>
+
+    <!-- Intro curtain (first visit per session, motion only) -->
+    <div class="curtain" aria-hidden="true" data-curtain>
+      <svg class="curtain-sun" viewBox="0 0 120 120"><circle cx="60" cy="60" r="26" /><g>{Array.from({ length: 12 }, (_, i) => <line x1="60" y1="10" x2="60" y2="24" transform={`rotate(${i * 30} 60 60)`} />)}</g><path d="M20 96 q10 -7 20 0 t20 0 t20 0 t20 0" /></svg>
+      <p class="curtain-word">Corali</p>
+    </div>
+
+    <header class="hd" data-hd>
+      <button class="hd-menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-open><i></i><i></i><span>{v.menu}</span></button>
+      <a class="hd-logo" href={v3Path(lang)} aria-label={d.a11y.home}><Image src={logo} alt="Hotel Corali" width={150} height={38} densities={[1, 2]} loading="eager" /></a>
+      <div class="hd-right">
+        <a class="hd-link" href={`tel:${hotel.phone}`}>{v.call}</a>
+        <details class="hd-lang"><summary>{loc.short}</summary><ul>{locales.map((l) => <li><a href={v3Path(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.label}</a></li>)}</ul></details>
+        <button class="hd-book" type="button" data-open-book>{v.book}</button>
+      </div>
+    </header>
+
+    <!-- Full-screen menu with image preview -->
+    <div class="menu" id="menu" hidden data-menu>
+      <div class="menu-in">
+        <nav class="menu-nav" aria-label={v.menu}>
+          <ol>{links.map((l, i) => <li style={`--i:${i}`}><a href={l.href} data-menu-link data-img={l.img}><span class="menu-n">0{i + 1}</span>{l.label}</a></li>)}</ol>
+        </nav>
+        <figure class="menu-fig" aria-hidden="true"><img src={menuImgs[0]} alt="" data-menu-img width="900" height="1100" /></figure>
+        <div class="menu-foot">
+          <p class="menu-note">{v.menuNote}</p>
+          <p><a href={`tel:${hotel.phone}`}>{hotel.phoneDisplay}</a> · <a href={`mailto:${hotel.email}`}>{hotel.email}</a></p>
+          <p class="menu-langs">{locales.map((l) => <a href={v3Path(l.code)} hreflang={l.code} lang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.short}</a>)}</p>
+        </div>
+      </div>
+      <button class="menu-close" type="button" data-menu-close>{v.close} ✕</button>
+    </div>
+
+    <button class="vbook" type="button" data-open-book>{v.bookNow}</button>
+
+    <main id="main">
+      <!-- HERO: cinematic slideshow (Ken Burns), headline, booking pill -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="slides" aria-hidden="true">
+          {heroSlides.map((s, i) => (
+            <div class:list={["slide", { "is-on": i === 0 }]} data-slide>
+              <Picture src={s} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[640, 1080, 1600, 1920]} sizes="100vw" alt="" loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : undefined} />
+            </div>
+          ))}
+        </div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="lbl hero-sub" data-hero-fade>{v.heroSub}</p>
+          <h1 id="hero-title" class="hero-title"><span class="ln"><span data-hero-line>{v.heroA}</span></span><span class="ln"><em data-hero-line>{v.heroB}</em></span></h1>
+          <a class="film" href="https://www.youtube.com/watch?v=3AykK5Cc-A8" target="_blank" rel="noopener" data-film data-hero-fade><span class="film-dot" aria-hidden="true">▶</span>{v.film}</a>
+        </div>
+        <div class="slide-dots" aria-hidden="true">{heroSlides.map((_, i) => <i class:list={{ "is-on": i === 0 }} data-dot></i>)}</div>
+        <p class="lbl scroll-cue" aria-hidden="true">{v.scroll}<i></i></p>
+
+        <form class="pill" action={hotel.bookingBase} method="get" data-pill>
+          <label class="pf">{d.booking.checkIn}<input type="date" name="checkIn" required data-in /></label>
+          <label class="pf">{d.booking.checkOut}<input type="date" name="checkOut" required data-out /></label>
+          <div class="pf pf-guests">
+            <span>{v.guests}</span>
+            <div class="step"><button type="button" aria-label="−" data-g="-1">−</button><output data-g-out>2</output><button type="button" aria-label="+" data-g="1">+</button></div>
+            <input type="hidden" name="adults" value="2" data-adults />
+          </div>
+          <input type="hidden" name="children" value="0" />
+          <input type="hidden" name="lang" value={lang} />
+          <input type="hidden" name="utm_source" value="website" />
+          <input type="hidden" name="utm_medium" value="referral" />
+          <input type="hidden" name="utm_content" value="v3-pill" />
+          <button class="pill-go" type="submit">{v.check}</button>
+        </form>
+      </section>
+
+      <!-- INTRO -->
+      <section class="intro" aria-labelledby="intro-title">
+        <svg class="amph" viewBox="0 0 120 200" aria-hidden="true" data-draw><path d="M45 20 h30 M50 20 q-4 14 -4 22 q-26 12 -26 58 q0 50 40 72 q40 -22 40 -72 q0 -46 -26 -58 q0 -8 -4 -22 M46 42 q-18 -2 -20 14 M74 42 q18 -2 20 14 M34 92 q26 10 52 0 M30 112 q30 12 60 0 M44 66 q16 -8 32 0" /><circle cx="60" cy="140" r="10" /></svg>
+        <p class="lbl" data-rv>{v.introKicker}</p>
+        <h2 id="intro-title" class="intro-text" data-rv>{intro.map((p) => (p.hi ? <em>{p.s}</em> : p.s))}</h2>
+        <p class="intro-sub" data-rv>{v.introSub}</p>
+      </section>
+
+      <!-- MOSAIC (colour blocks + photos) -->
+      <section class="mosaic" aria-label={v.discover}>
+        {v.tiles.map((tile, i) => (
+          <>
+            <article class={`blk blk-${i}`} data-rv><h3>{tile.t}</h3><p>{tile.x}</p></article>
+            <figure class={`mfig mfig-${i}`}><Picture src={tileImgs[i]} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800, 1100]} sizes="(min-width: 960px) 25vw, 50vw" alt={d.gallery.alts[i]} loading="lazy" /></figure>
+          </>
+        ))}
+      </section>
+
+      <!-- ROOMS: drag slider -->
+      <section id="rooms" class="rooms" aria-labelledby="rooms-title">
+        <header class="sec-head">
+          <p class="lbl" id="rooms-title">{v.roomsKicker}</p>
+          <p class="lbl sec-count"><span data-room-i>01</span> / 0{rooms.length}</p>
+        </header>
+        <div class="rail" data-rail tabindex="0" aria-label={v.roomsKicker}>
+          {rooms.map((r, i) => {
+            const it = d.rooms.items[r.id];
+            return (
+              <article class="rcard" data-rcard>
+                <figure class="rcard-img"><Picture src={r.img} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800, 1100]} sizes="(min-width: 960px) 36vw, 82vw" alt={it.alt} loading="lazy" draggable="false" /></figure>
+                <div class="rcard-copy">
+                  <p class="rcard-n">0{i + 1}.</p>
+                  <h3>{it.name}</h3>
+                  <p class="lbl">{it.bed} · {r.floor === 2 ? d.rooms.floor2 : d.rooms.floor1}</p>
+                  <p class="rcard-x">{it.text}</p>
+                  <p class="rcard-price">{d.v2.rooms.from} <b>{eur(r.from)}</b> {d.v2.rooms.night}</p>
+                  <button class="txt-btn" type="button" data-open-book>{v.check} →</button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+        <p class="fine">* {d.rooms.note}</p>
+      </section>
+
+      <!-- EXPERIENCE TRUE PAROS -->
+      <section id="experience" class="exp" aria-labelledby="exp-title">
+        <header class="sec-head"><p class="lbl" id="exp-title">{v.expKicker}</p></header>
+        <div class="exp-grid">
+          {v.exps.map((e, i) => (
+            <figure class={`xp xp-${i}`}>
+              <Picture src={expImgs[i]} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800, 1200]} sizes={i === 0 ? "(min-width: 960px) 50vw, 100vw" : "(min-width: 960px) 25vw, 100vw"} alt="" loading="lazy" />
+              <figcaption><h3>{e.t}</h3><p>{e.x}</p>{i === 3 && <p class="xp-live lbl"><span>{v.windNow}: <b data-wind>—</b></span><span>{v.calm}: <b data-calm>—</b></span><span>{v.sea}: <b data-sea>—</b></span></p>}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <!-- GALLERY: horizontal strip -->
+      <section id="gallery" class="gal" aria-labelledby="gal-title">
+        <header class="sec-head"><p class="lbl" id="gal-title">{v.galleryKicker}</p><p class="lbl">{gallery.length} photos</p></header>
+        <div class="gal-pin" data-gal-pin>
+          <ul class="gal-track" data-gal-track>
+            {gallery.map((g, i) => <li class={`gi gi-${i % 3}`}><Picture src={g} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[480, 800, 1200]} sizes="(min-width: 960px) 32vw, 78vw" alt={d.gallery.alts[i] ?? ""} loading="lazy" /></li>)}
+          </ul>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="rev" aria-labelledby="rev-title">
+        <p class="lbl" id="rev-title">{v.reviewsKicker} · {v.reviewsCount}</p>
+        <div class="rev-stage" data-rev>
+          {reviews.map((r, i) => <figure class:list={["rq", { "is-on": i === 0 }]} data-rq><blockquote lang={r.lang}>“{r.text}”</blockquote><figcaption class="lbl">{r.name}</figcaption></figure>)}
+        </div>
+        <div class="rev-dots">{reviews.map((_, i) => <button type="button" class:list={{ "is-on": i === 0 }} aria-label={`${i + 1}`} data-rd={i}></button>)}</div>
+      </section>
+
+      <!-- FIND US -->
+      <section id="find" class="find" aria-labelledby="find-title">
+        <figure class="find-img"><Picture src={h4} formats={["avif", "webp"]} fallbackFormat="jpg" widths={[640, 1100, 1600]} sizes="(min-width: 960px) 55vw, 100vw" alt="" loading="lazy" /></figure>
+        <div class="find-copy">
+          <p class="lbl">{v.findKicker}</p>
+          <h2 id="find-title">{v.findTitle}</h2>
+          <ul>{d.village.items.map((x) => <li><b>{x.title}</b><span>{x.text}</span></li>)}</ul>
+          <p class="find-links"><a class="txt-btn" href={mapsUrl} target="_blank" rel="noopener">Google Maps ↗</a><a class="txt-btn" href={hotel.webcam} target="_blank" rel="noopener">{d.v2.live.webcam} ↗</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ft">
+      <Image src={logo} alt="Hotel Corali" width={220} height={55} densities={[1, 2]} loading="lazy" class="ft-logo" />
+      <p class="ft-addr">{lang === "el" ? hotel.addressEl : "Piso Livadi, Paros 844 00, Greece"} · <a href={`tel:${hotel.phone}`}>{hotel.phoneDisplay}</a> · <a href={`mailto:${hotel.email}`}>{hotel.email}</a></p>
+      <p class="ft-links lbl">{hotel.social.map((s) => <a href={s.url} target="_blank" rel="noopener me">{s.name}</a>)}</p>
+      <p class="ft-links lbl">{locales.map((l) => <a href={v3Path(l.code)} hreflang={l.code} lang={l.code}>{l.short}</a>)}<a href={homePath(lang)}>{d.v2.nav.classic}</a></p>
+      <p class="ft-copy">© {year} Hotel Corali{loc.auto && ` · ${d.footer.auto}`}</p>
+    </footer>
+
+    <div class="mbar"><button type="button" data-open-book>{v.check}</button></div>
+
+    <!-- LIVE PRICES panel -->
+    <dialog class="panel" data-panel aria-labelledby="panel-title">
+      <div class="panel-in">
+        <header class="panel-head"><p class="lbl" id="panel-title">{d.v2.results.title}</p><button class="txt-btn" type="button" data-close>{v.close} ✕</button></header>
+        <form class="panel-form" action={hotel.bookingBase} method="get" data-pform>
+          <label class="pf">{d.booking.checkIn}<input type="date" name="checkIn" required data-pin /></label>
+          <label class="pf">{d.booking.checkOut}<input type="date" name="checkOut" required data-pout /></label>
+          <label class="pf">{d.booking.adults}<select name="adults" data-padults>{[1, 2, 3, 4, 5, 6].map((n) => <option selected={n === 2}>{n}</option>)}</select></label>
+          <label class="pf">{d.booking.children}<select name="children" data-pchildren>{[0, 1, 2, 3, 4].map((n) => <option>{n}</option>)}</select></label>
+          <input type="hidden" name="lang" value={lang} />
+          <button class="pill-go" type="submit">{d.v2.show}</button>
+        </form>
+        <h2 class="panel-title" data-results-title></h2>
+        <div data-results-list></div>
+        <a class="txt-btn panel-open" data-results-open href={bookUrl(lang, "v3-panel")} rel="noopener">{d.v2.results.open} ↗</a>
+      </div>
+    </dialog>
+
+    <dialog class="filmbox" data-filmbox aria-label={v.film}><button class="txt-btn" type="button" data-close>{v.close} ✕</button><div class="filmbox-frame" data-film-frame></div></dialog>
+    <div class="cur" aria-hidden="true" data-cur><span>{v.drag}</span></div>
+
+    <script type="application/json" id="v3-data" set:html={JSON.stringify(client)} />
+    <script>
+      import "./v3.ts";
+    </script>
+  </body>
+</html>

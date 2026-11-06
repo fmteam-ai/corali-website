@@ -166,4 +166,14 @@ export function initDatePicker(form: HTMLFormElement, inInput: HTMLInputElement,
   addEventListener("resize", () => mode && render());
 
   sync();
+  return {
+    /** Set both dates from outside (e.g. another form); keeps the 60-night limit. */
+    set(inDate: string, outDate: string) {
+      if (!inDate || inDate < today) return;
+      checkIn = inDate;
+      checkOut = outDate > inDate && nightsBetween(inDate, outDate) <= MAX_NIGHTS ? outDate : addDays(inDate, 1);
+      sync();
+    },
+    get: () => ({ checkIn, checkOut }),
+  };
 }

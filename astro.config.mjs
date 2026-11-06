@@ -19,7 +19,7 @@ export default defineConfig({
   },
   integrations: staging ? [] : [
     sitemap({
-      filter: (page) => !page.includes("/v2/"),
+      filter: (page) => !page.includes("/v2/") && !page.includes("/v3/"),
       i18n: {
         defaultLocale,
         locales: Object.fromEntries(locales.map((l) => [l.code, l.hreflang])),

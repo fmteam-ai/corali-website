@@ -404,5 +404,74 @@
     "airport": "Flughafen",
     "beach": "Strand",
     "story": "Story"
+  },
+  "v3": {
+    "title": "Hotel Corali · Piso Livadi, Paros — Ein Sommerhaus der Familie über der Ägäis",
+    "menu": "Menü",
+    "close": "Schließen",
+    "book": "Buchen",
+    "call": "Anrufen",
+    "bookNow": "Jetzt buchen",
+    "check": "Verfügbarkeit prüfen",
+    "guests": "Gäste",
+    "film": "Film ansehen",
+    "scroll": "Scrollen",
+    "heroA": "Aufwachen",
+    "heroB": "über der Ägäis",
+    "heroSub": "Ein Sommerhaus der Familie in Piso Livadi, Paros",
+    "introKicker": "Hotel Corali · familiengeführt, direkt am Meer",
+    "intro": "Riechen Sie das [Salz] in der Morgenbrise, hören Sie die [Fischerboote] einlaufen und sehen Sie die Sonne über [Naxos] aufgehen — von Ihrem eigenen Balkon.",
+    "introSub": "Zimmer mit Meerblick und ein Penthouse über dem kleinen Hafen von Piso Livadi — schlicht, sonnig und von einer Familie umsorgt.",
+    "discover": "Mehr entdecken",
+    "tiles": [
+      {
+        "t": "Wohnen",
+        "x": "Jedes Zimmer öffnet sich zu Balkon und Bucht. Mit dem Licht aufwachen, mit dem Meer einschlafen."
+      },
+      {
+        "t": "Genießen",
+        "x": "Frischer Fisch und lokaler Wein in den Tavernen am Hafen — zwei Minuten zu Fuß."
+      },
+      {
+        "t": "Baden",
+        "x": "Logaras, Pounta, Golden Beach und der kleine Strand direkt unter dem Hotel."
+      },
+      {
+        "t": "Entdecken",
+        "x": "Boote nach Naxos, Mykonos und zu den Kleinen Kykladen fahren vom Dorfhafen ab."
+      }
+    ],
+    "roomsKicker": "Die Zimmer entdecken",
+    "viewAll": "Alle",
+    "drag": "Ziehen",
+    "findOut": "Mehr erfahren",
+    "expKicker": "Das echte Paros erleben",
+    "exps": [
+      {
+        "t": "Strand Logaras",
+        "x": "Feiner Sand und flaches Wasser, 300 Meter entfernt."
+      },
+      {
+        "t": "Hafentavernen",
+        "x": "Frischer Fisch bei den Booten."
+      },
+      {
+        "t": "Inselhüpfen",
+        "x": "Täglich Boote nach Naxos und weiter."
+      },
+      {
+        "t": "Der Meltemi-Guide",
+        "x": "Der ruhigste Strand heute, live."
+      }
+    ],
+    "windNow": "Wind jetzt",
+    "calm": "Ruhigster Strand",
+    "sea": "Meer",
+    "galleryKicker": "Galerie",
+    "reviewsKicker": "Gästebuch",
+    "reviewsCount": "279 Bewertungen · Ausgezeichnet",
+    "findKicker": "Anfahrt",
+    "findTitle": "Piso Livadi, Paros",
+    "menuNote": "Ein Sommerhaus der Familie über der Ägäis"
   }
 }

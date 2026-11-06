@@ -404,5 +404,74 @@
     "airport": "Airport",
     "beach": "Beach",
     "story": "Story"
+  },
+  "v3": {
+    "title": "Hotel Corali · Piso Livadi, Paros — A family summerhouse above the Aegean",
+    "menu": "Menu",
+    "close": "Close",
+    "book": "Book",
+    "call": "Call",
+    "bookNow": "Book now",
+    "check": "Check availability",
+    "guests": "Guests",
+    "film": "Watch the film",
+    "scroll": "Scroll",
+    "heroA": "Wake up above",
+    "heroB": "the Aegean",
+    "heroSub": "A family summerhouse in Piso Livadi, Paros",
+    "introKicker": "Hotel Corali · family-run, by the sea",
+    "intro": "Smell the [salt] in the morning breeze, hear the [fishing boats] come in, and watch the sun rise over [Naxos] from your own balcony.",
+    "introSub": "Sea-view rooms and a penthouse above the little harbour of Piso Livadi — simple, sunlit and looked after by one family.",
+    "discover": "Discover more",
+    "tiles": [
+      {
+        "t": "Stay",
+        "x": "Every room opens onto a balcony and the bay. Wake to the light, fall asleep to the sea."
+      },
+      {
+        "t": "Taste",
+        "x": "Fresh fish and local wine at the tavernas on the harbour — two minutes on foot."
+      },
+      {
+        "t": "Swim",
+        "x": "Logaras, Pounta, Golden Beach, and the little beach right below the hotel."
+      },
+      {
+        "t": "Explore",
+        "x": "Boats to Naxos, Mykonos and the Small Cyclades leave from the village port."
+      }
+    ],
+    "roomsKicker": "Discover the rooms",
+    "viewAll": "View all",
+    "drag": "Drag",
+    "findOut": "Find out more",
+    "expKicker": "Experience true Paros",
+    "exps": [
+      {
+        "t": "Logaras beach",
+        "x": "Soft sand and shallow water, 300 metres away."
+      },
+      {
+        "t": "Harbour tavernas",
+        "x": "Fresh fish by the boats."
+      },
+      {
+        "t": "Island hopping",
+        "x": "Daily boats to Naxos and beyond."
+      },
+      {
+        "t": "The meltemi guide",
+        "x": "Today's calmest beach, live."
+      }
+    ],
+    "windNow": "Wind now",
+    "calm": "Calmest beach",
+    "sea": "Sea",
+    "galleryKicker": "Gallery",
+    "reviewsKicker": "Guest book",
+    "reviewsCount": "279 reviews · Excellent",
+    "findKicker": "Find us",
+    "findTitle": "Piso Livadi, Paros",
+    "menuNote": "A family summerhouse above the Aegean"
   }
 }

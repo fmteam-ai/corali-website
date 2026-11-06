@@ -33,3 +33,5 @@ export const asset = (file: string) => `${base}${file}`;
 
 /** Home page of the alternative design (v2): /v2/, /v2/el/ … */
 export const v2Path = (code: Lang) => (code === defaultLocale ? `${base}v2/` : `${base}v2/${code}/`);
+/** Home page of the "Aegean Summerhouse" design (v3): /v3/, /v3/el/ … */
+export const v3Path = (code: Lang) => (code === defaultLocale ? `${base}v3/` : `${base}v3/${code}/`);

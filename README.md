@@ -45,3 +45,12 @@ JetBrains Mono, square corners, hairlines, one electric Aegean blue). Same data,
 - Booking in two steps (dates & guests → live rooms & prices from `booking.hotelcorali.gr/api/public/availability`).
 - "A day" horizontal film strip (pinned on desktop, swipe on phones), terminal-style concierge (PMS assistant widget).
 - `noindex` + canonical to the classic page, excluded from the sitemap.
+
+## Version 3 — `/v3/` "Aegean Summerhouse"
+`src/v3/` + `src/pages/v3/`: the visual language of luxury boutique hotels (hōm Santorini, Mykonos No5, Armenaki):
+- intro curtain (sun line drawing, first visit per session), minimal header (Menu · logo · Book) and full-screen menu with photo preview
+- cinematic hero (photo slideshow with slow zoom), hotel film in a lightbox (YouTube, privacy-enhanced)
+- floating booking "pill" → live prices panel (booking engine API), vertical "Book now" tab
+- Paros colour-block mosaic, drag-to-scroll rooms with "Drag" cursor, experiences collage with the live meltemi tile,
+  pinned horizontal gallery, guest-book quotes, location
+- EB Garamond + Commissioner (Greek), GSAP ScrollTrigger + Lenis, off for reduced motion; noindex, not in the sitemap.

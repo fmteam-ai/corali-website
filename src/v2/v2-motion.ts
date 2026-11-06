@@ -120,8 +120,14 @@ export function init() {
     addEventListener("v2:results", onRes);
     offs.push(() => removeEventListener("v2:results", onRes));
 
-    document.fonts?.ready.then(() => ScrollTrigger.refresh());
-    addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+    // Lazy images change the page height when they arrive: recompute trigger positions (debounced).
+    // (This module loads after window "load", so listen to each image instead.)
+    let rt = 0;
+    const refresh = () => { clearTimeout(rt); rt = window.setTimeout(() => ScrollTrigger.refresh(), 150); };
+    document.querySelectorAll("img").forEach((img) => { if (!img.complete) img.addEventListener("load", refresh, { once: true }); });
+    document.fonts?.ready.then(refresh);
+    if (document.readyState !== "complete") addEventListener("load", refresh, { once: true });
+    offs.push(() => clearTimeout(rt));
 
     return () => {
       offs.forEach((f) => f());

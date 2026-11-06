@@ -404,5 +404,74 @@
     "airport": "Aéroport",
     "beach": "Plage",
     "story": "Story"
+  },
+  "v3": {
+    "title": "Hotel Corali · Piso Livadi, Paros — Une maison d'été familiale au-dessus de la mer Égée",
+    "menu": "Menu",
+    "close": "Fermer",
+    "book": "Réserver",
+    "call": "Appeler",
+    "bookNow": "Réserver",
+    "check": "Voir les disponibilités",
+    "guests": "Personnes",
+    "film": "Voir le film",
+    "scroll": "Défiler",
+    "heroA": "Se réveiller",
+    "heroB": "au-dessus de l'Égée",
+    "heroSub": "Une maison d'été familiale à Piso Livadi, Paros",
+    "introKicker": "Hotel Corali · une famille au bord de la mer",
+    "intro": "Sentez le [sel] dans la brise du matin, écoutez les [bateaux de pêche] rentrer et regardez le soleil se lever sur [Naxos] depuis votre balcon.",
+    "introSub": "Des chambres vue mer et un penthouse au-dessus du petit port de Piso Livadi — simples, lumineux et choyés par une famille.",
+    "discover": "En savoir plus",
+    "tiles": [
+      {
+        "t": "Séjourner",
+        "x": "Chaque chambre ouvre sur un balcon et la baie. Se réveiller avec la lumière, s'endormir avec la mer."
+      },
+      {
+        "t": "Goûter",
+        "x": "Poisson frais et vin local dans les tavernes du port — à deux minutes à pied."
+      },
+      {
+        "t": "Nager",
+        "x": "Logaras, Pounta, Golden Beach, et la petite plage juste sous l'hôtel."
+      },
+      {
+        "t": "Explorer",
+        "x": "Des bateaux pour Naxos, Mykonos et les Petites Cyclades partent du port du village."
+      }
+    ],
+    "roomsKicker": "Découvrir les chambres",
+    "viewAll": "Tout voir",
+    "drag": "Glisser",
+    "findOut": "En savoir plus",
+    "expKicker": "Vivre le vrai Paros",
+    "exps": [
+      {
+        "t": "Plage de Logaras",
+        "x": "Sable fin et eau peu profonde, à 300 mètres."
+      },
+      {
+        "t": "Tavernes du port",
+        "x": "Poisson frais près des bateaux."
+      },
+      {
+        "t": "D'île en île",
+        "x": "Bateaux quotidiens pour Naxos et au-delà."
+      },
+      {
+        "t": "Le guide du meltem",
+        "x": "La plage la plus abritée aujourd'hui, en direct."
+      }
+    ],
+    "windNow": "Vent actuel",
+    "calm": "Plage la plus abritée",
+    "sea": "Mer",
+    "galleryKicker": "Galerie",
+    "reviewsKicker": "Livre d'or",
+    "reviewsCount": "279 avis · Excellent",
+    "findKicker": "Nous trouver",
+    "findTitle": "Piso Livadi, Paros",
+    "menuNote": "Une maison d'été familiale au-dessus de la mer Égée"
   }
 }

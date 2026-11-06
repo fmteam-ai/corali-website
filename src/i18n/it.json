@@ -404,5 +404,74 @@
     "airport": "Aeroporto",
     "beach": "Spiaggia",
     "story": "Story"
+  },
+  "v3": {
+    "title": "Hotel Corali · Piso Livadi, Paros — Una casa estiva di famiglia sopra l'Egeo",
+    "menu": "Menu",
+    "close": "Chiudi",
+    "book": "Prenota",
+    "call": "Chiama",
+    "bookNow": "Prenota",
+    "check": "Verifica disponibilità",
+    "guests": "Ospiti",
+    "film": "Guarda il video",
+    "scroll": "Scorri",
+    "heroA": "Svegliarsi",
+    "heroB": "sopra l'Egeo",
+    "heroSub": "Una casa estiva di famiglia a Piso Livadi, Paros",
+    "introKicker": "Hotel Corali · una famiglia in riva al mare",
+    "intro": "Sentite il [sale] nella brezza del mattino, ascoltate le [barche dei pescatori] rientrare e guardate il sole sorgere su [Naxos] dal vostro balcone.",
+    "introSub": "Camere vista mare e un attico sopra il porticciolo di Piso Livadi — semplici, luminosi e curati da una famiglia.",
+    "discover": "Scopri di più",
+    "tiles": [
+      {
+        "t": "Soggiorno",
+        "x": "Ogni camera si apre su un balcone e sulla baia. Svegliarsi con la luce, addormentarsi con il mare."
+      },
+      {
+        "t": "Sapori",
+        "x": "Pesce fresco e vino locale nelle taverne del porto — a due minuti a piedi."
+      },
+      {
+        "t": "Mare",
+        "x": "Logaras, Pounta, Golden Beach e la spiaggetta proprio sotto l'hotel."
+      },
+      {
+        "t": "Scoprire",
+        "x": "Le barche per Naxos, Mykonos e le Piccole Cicladi partono dal porto del paese."
+      }
+    ],
+    "roomsKicker": "Scoprite le camere",
+    "viewAll": "Tutte",
+    "drag": "Trascina",
+    "findOut": "Scopri di più",
+    "expKicker": "Vivere la vera Paros",
+    "exps": [
+      {
+        "t": "Spiaggia di Logaras",
+        "x": "Sabbia fine e acqua bassa, a 300 metri."
+      },
+      {
+        "t": "Taverne del porto",
+        "x": "Pesce fresco accanto alle barche."
+      },
+      {
+        "t": "Di isola in isola",
+        "x": "Barche ogni giorno per Naxos e oltre."
+      },
+      {
+        "t": "La guida al meltemi",
+        "x": "La spiaggia più riparata oggi, in diretta."
+      }
+    ],
+    "windNow": "Vento ora",
+    "calm": "Spiaggia più riparata",
+    "sea": "Mare",
+    "galleryKicker": "Galleria",
+    "reviewsKicker": "Libro degli ospiti",
+    "reviewsCount": "279 recensioni · Eccellente",
+    "findKicker": "Dove siamo",
+    "findTitle": "Piso Livadi, Paros",
+    "menuNote": "Una casa estiva di famiglia sopra l'Egeo"
   }
 }
